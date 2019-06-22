@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\TaskAssign;
 
 class User extends Authenticatable
 {
@@ -33,4 +34,10 @@ class User extends Authenticatable
     ];
 
     protected $dates = ['deleted_at'];
+
+    
+    public function getTaskAssigns()
+   {
+       return $this->hasMany(TaskAssign::class, 'user_id', 'id');
+   }
 }
