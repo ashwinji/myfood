@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="d-flex">
 			<a class="header-brand" href="index.html">
-				<img src="{{url('/')}}/{{$appSetting->app_logo}}" class="" alt="{{$appSetting->app_name}}">
+				Food Production
 			</a>
 			<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
 			<div class="d-none d-lg-block horizontal">

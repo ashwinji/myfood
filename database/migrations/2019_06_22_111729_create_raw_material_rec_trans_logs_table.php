@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRawMaterialReceivingTransectionLogsTable extends Migration
+class CreateRawMaterialRecTransLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateRawMaterialReceivingTransectionLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('raw_material_receiving_transection_logs', function (Blueprint $table) {
+        Schema::create('raw_material_rec_trans_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('purchase_indent_id');
+              $table->unsignedInteger('purchase_indent_id');
             $table->unsignedInteger('purchase_indent_item_id');
             $table->unsignedInteger('item_id')->comment('raw_material_master_id');
             $table->decimal('qty',9,2);
@@ -35,6 +35,6 @@ class CreateRawMaterialReceivingTransectionLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('raw_material_receiving_transection_logs');
+        Schema::dropIfExists('raw_material_rec_trans_logs');
     }
 }

@@ -21,6 +21,7 @@
         "rdanusha/laravel-elastic-email": "^1.0",
         "spatie/laravel-permission": "^2.12",
         "twilio/sdk": "^5.27",
+        "yajra/laravel-datatables": "1.0",
         "yoeunes/notify": "^1.0"
     },
     "require-dev": {
