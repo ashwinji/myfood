@@ -41,6 +41,40 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('delete-user/{id}', 'UserController@deleteuser')->name('user-delete');
         Route::post('actionUsers', 'UserController@actionUsers')->name('user-action');
         Route::post('update-status', 'UserController@updateStatus')->name('update-status');
+        
+
+        /////////////Raw Material////////////////////
+        Route::get('admin/raw-material','RawMaterialMasterController@rawmaterialList')->name('raw-material');
+        Route::get('admin/raw-material-add','RawMaterialMasterController@rawmaterialadd')->name('raw-material-add');
+        Route::post('admin/raw-material-save','RawMaterialMasterController@rawmaterialsave')->name('raw-material-save');
+        Route::get('admin/raw-material-edit/{id}','RawMaterialMasterController@rawmaterialedit')->name('raw-material-edit');
+        Route::get('admin/raw-material-delete/{id}','RawMaterialMasterController@rawmaterialdelete')->name('raw-material-delete');
+
+
+        /////////////units////////////////////
+
+        Route::get('admin/unit-master','UnitMasterController@unitlist')->name('unit-master');
+        Route::get('admin/unit-add','UnitMasterController@unitadd')->name('unit-add');
+        Route::post('admin/unit-save','UnitMasterController@unitsave')->name('unit-save');
+        Route::get('admin/unit-edit/{id}','UnitMasterController@unitedit')->name('unit-edit');
+        Route::get('admin/unit-delete/{id}','UnitMasterController@unitdelete')->name('unit-delete');
+        /////////////Meals ////////////////////
+        Route::get('admin/meals','MealMasterController@mealslist')->name('meals');
+        Route::get('admin/meals-add','MealMasterController@mealsadd')->name('meals-add');
+        Route::post('admin/meals-save','MealMasterController@mealssave')->name('meals-save');  
+        Route::get('admin/meals-edit/{id}','MealMasterController@mealsedit')->name('meals-edit');
+        Route::get('admin/meals-delete/{id}','MealMasterController@mealsdelete')->name('meals-delete');
+
+        /////////////Recipe////////////////////
+  
+        Route::get('admin/recipe','RecipeMasterController@recipelist')->name('recipe');
+        Route::get('admin/recipe-add','RecipeMasterController@recipeadd')->name('recipe-add');
+        Route::post('admin/recipe-save','RecipeMasterController@recipesave')->name('recipe-save');
+        Route::get('admin/recipe-edit/{id}','RecipeMasterController@recipeedit')->name('recipe-edit');
+
+  
+
+
 
 	});
 

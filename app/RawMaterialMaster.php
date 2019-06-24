@@ -12,7 +12,16 @@ use App\SupplierItem;
 
 class RawMaterialMaster extends Model
 {
-    use SoftDeletes;
+    protected $table = 'raw_material_masters';
+    protected $fillable = ['item_name','unit','expected_price'];
+  use SoftDeletes;
+
+
+     public function unitname()
+   {
+       return $this->belongsTo('App\UnitMaster', 'unit', 'id');
+
+  }
 
     
     protected $fillable = [
