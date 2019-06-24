@@ -42,6 +42,18 @@
 				@endcan
 			</ul>
 		</li>
+		<li class="slide">
+			<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-industry"></i><span class="side-menu__label">Supplier</span><i class="angle fa fa-angle-right"></i></a>
+			<ul class="slide-menu">
+				
+				<li>
+					<a href="{{ route('supplier-list') }}" class="slide-item">Supplier</a>
+				</li>
+				<li>
+					<a href="{{ route('supplier-item-list') }}" class="slide-item">Supplier Items</a>
+				</li>
+			</ul>
+		</li>
 		@endhasanyrole
 
 		<li>

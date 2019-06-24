@@ -42,6 +42,23 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::post('actionUsers', 'UserController@actionUsers')->name('user-action');
         Route::post('update-status', 'UserController@updateStatus')->name('update-status');
 
+        //...Supplier...
+       Route::get('admin/supplier-list', 'SupplierController@supplierList')->name('supplier-list');
+
+       Route::get('admin/add-supplier', 'SupplierController@suplierAdd')->name('add-supplier');
+        Route::get('admin/supplier-edit/{id}', 'SupplierController@supplierEdit')->name('supplier-edit');
+        Route::post('admin/savesupplier', 'SupplierController@supplierSave')->name('supplier-save');
+        Route::get('admin/delete-supplier/{id}', 'SupplierController@supplierDelete')->name('supplier-delete');
+         //...Supplier Item...
+       Route::get('admin/supplier-item-list', 'SupplierItemsController@supplierItemList')->name('supplier-item-list');
+      Route::get('admin/add-supplier-item', 'SupplierItemsController@suplierItemAdd')->name('add-supplier-item');
+        Route::get('admin/supplier-item-edit/{id}', 'SupplierItemsController@supplierItemEdit')->name('supplier-edit-item');
+        Route::post('admin/supplier-item-save', 'SupplierItemsController@supplierItemSave')->name('supplier-item-save');
+        Route::get('admin/delete-supplier-item/{id}', 'SupplierItemsController@supplierItemDelete')->name('supplier-item-delete');
+       
+
+       
+    
 	});
 
 });
