@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col mx-auto">
                 <div class="text-center mb-6">
-                    <img src="{{url('/')}}/{{$appSetting->app_logo}}" class="" alt="{{$appSetting->app_name}}">
+                    <h1>Food Production</h1>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-8">

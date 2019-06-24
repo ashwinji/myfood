@@ -16,7 +16,7 @@ class CreatePurchaseIndentsTable extends Migration
         Schema::create('purchase_indents', function (Blueprint $table) {
             $table->increments('id');
             $table->date('indent_date');
-            $table->string('status')->comment('Pending, Send, Process, Complete')->default('Pending');
+            $table->string('status')->nullable()->comment('Pending, Send, Process, Complete')->default('Pending');
             $table->date('indent_complete')->nullable()->comment('all items status:Complete then purchase_indents status:Complete and completed date');
             $table->text('remark')->nullable();
             $table->timestamps();

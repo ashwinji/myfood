@@ -8,6 +8,10 @@ use App\RecipeMaster;
 
 class MealAndRecipe extends Model
 {
+<<<<<<< HEAD
+    protected $table = 'meal_and_recipes';
+    protected $fillable = ['meal_master_id','recipe_master_id']; 
+=======
     protected $fillable = [
          'meal_master_id','recipe_master_id'
     ];
@@ -23,4 +27,5 @@ class MealAndRecipe extends Model
       return $this->belongsTo(RecipeMaster::class, 'recipe_master_id','id');
    }
 
+>>>>>>> 1ecdb255b07d939fb54fdf45438d06ff526fb4c8
 }
