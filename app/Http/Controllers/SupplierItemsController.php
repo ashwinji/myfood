@@ -33,7 +33,7 @@ class SupplierItemsController extends Controller
   	 
   	public function supplierItemEdit($id){ 
   	   
-		  if(count(Supplier::where('id', $id)->first())<1)
+		  if(count(SupplierItem::where('id', $id)->first())<1)
          {
              notify()->error('Oops!!!, something went wrong, please try again.');
              return \Redirect()->back();
