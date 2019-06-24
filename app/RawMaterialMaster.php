@@ -9,10 +9,10 @@ use App\PurchaseIndentItem;
 use App\Ingredient;
 use App\RawMaterialRecTransLog;
 use App\SupplierItem;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RawMaterialMaster extends Model
 {
-    protected $table = 'raw_material_masters';
     protected $fillable = ['item_name','unit','expected_price'];
   use SoftDeletes;
 
