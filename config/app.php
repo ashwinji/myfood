@@ -237,12 +237,9 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Image' => Intervention\Image\Facades\Image::class,
-<<<<<<< HEAD
-        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
-=======
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
->>>>>>> 1ecdb255b07d939fb54fdf45438d06ff526fb4c8
+
     ],
 
 ];
