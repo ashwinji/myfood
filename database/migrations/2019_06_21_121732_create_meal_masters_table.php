@@ -20,12 +20,12 @@ class CreateMealMastersTable extends Migration
             $table->timestamps();
         });
     }
-    {
+    /*{
         recipe: 1,
         recipe: 2,
         recipe: 3,
         recipe: 5,
-    }
+    }*/
 
     /**
      * Reverse the migrations.

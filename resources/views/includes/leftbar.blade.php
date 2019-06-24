@@ -42,7 +42,35 @@
 				@endcan
 			</ul>
 		</li>
+
 		@endhasanyrole
+
+			<li class="slide">
+				<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-table"></i><span class="side-menu__label">Raw Material</span><i class="angle fa fa-angle-right"></i></a>
+				<ul class="slide-menu">
+					<li>
+						<a href="{{ route('raw-material') }}" class="slide-item">Item Master</a>
+					</li>
+					<li>
+						<a href="{{ route('unit-master') }}" class="slide-item">Unit Master</a>
+					</li>
+				</ul>
+			</li>
+
+
+               <li class="slide">
+				<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-table"></i><span class="side-menu__label">Food</span><i class="angle fa fa-angle-right"></i></a>
+				<ul class="slide-menu">
+					<li>
+						<a href="{{ route('meals') }}" class="slide-item">Meal Master</a>
+					</li>
+					<li>
+						<a href="{{ route('recipe') }}" class="slide-item">Recipe Master</a>
+					</li>
+				</ul>
+			</li>
+
+
 
 		<li>
 			<a class="side-menu__item" href="{{ route('need-help') }}"><i class="side-menu__icon fa fa-question-circle"></i><span class="side-menu__label">Help & Support</span></a>

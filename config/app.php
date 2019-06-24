@@ -180,6 +180,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yoeunes\Notify\NotifyServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
+
 
     ],
 
@@ -234,6 +236,8 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+
     ],
 
 ];

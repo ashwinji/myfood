@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Appsetting;
-use View;
+ use View;
 
 class AppServiceProvider extends ServiceProvider
 {
