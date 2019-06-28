@@ -20,5 +20,5 @@ class MealMaster extends Model
    public function getMenuPlannings()
    {
       return $this->hasMany(MenuPlanning::class, 'meal_master_id','id');
-   }
+   } 
 }
