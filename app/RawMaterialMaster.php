@@ -10,19 +10,15 @@ use App\PurchaseIndentItem;
 use App\Ingredient;
 use App\RawMaterialRecTransLog;
 use App\SupplierItem;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RawMaterialMaster extends Model
 {
-<<<<<<< HEAD
+
 
     
 
     use SoftDeletes;
-:wq
 
-=======
->>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264
     protected $fillable = ['item_name','unit','expected_price'];
 
    public function unitname()
@@ -34,10 +30,7 @@ class RawMaterialMaster extends Model
 
     
     
-<<<<<<< HEAD
 
-=======
->>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264
 
     public function getRawMaterialStocks()
    {
