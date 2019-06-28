@@ -14,15 +14,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RawMaterialMaster extends Model
 {
+<<<<<<< HEAD
 
     
 
     use SoftDeletes;
-   
+:wq
+
+=======
+>>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264
     protected $fillable = ['item_name','unit','expected_price'];
 
-
-     public function unitname()
+   public function unitname()
    {
        return $this->belongsTo('App\UnitMaster', 'unit', 'id');
 
@@ -31,7 +34,10 @@ class RawMaterialMaster extends Model
 
     
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264
 
     public function getRawMaterialStocks()
    {

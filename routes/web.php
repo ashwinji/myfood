@@ -100,12 +100,12 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
 
 
-
-
         Route::resource('admin-purchaseindent','PurchaseIndentController');
         Route::resource('admin-purchaseindentitem','PurchaseIndentItemController');
         Route::get('searchdata','PurchaseIndentItemController@getUnit')->name('data');
     });
+
+
 
 
 

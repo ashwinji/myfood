@@ -175,6 +175,7 @@
 						</div>
          @endsection
 
+<<<<<<< HEAD
 @section('extrajs')
 {!! Html::script('assets/plugins/peitychart/jquery.peity.min.js') !!}
 {!! Html::script('assets/plugins/peitychart/peitychart.init.js') !!}
@@ -193,3 +194,8 @@
 <script>
 	
 </script>
+=======
+<script>
+	
+</script>
+>>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264

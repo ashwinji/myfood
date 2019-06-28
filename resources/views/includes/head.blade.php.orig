@@ -19,9 +19,19 @@
 {!! Html::style('assets/plugins/toggle-sidebar/sidemenu.css') !!}
 {!! Html::style('assets/plugins/iconfonts/plugin.css') !!}
 {!! Html::style('assets/plugins/datatable/dataTables.bootstrap4.min.css') !!}
+<<<<<<< HEAD
 
 {!! Html::style('assets/css/custom.css')!!}
+=======
+{!! Html::style('assets/css/custom.css') !!}
+
+>>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264
 
 <!--for task assign -->
 {!! Html::style('assets/css/mycss.css') !!}
 
+<<<<<<< HEAD
+=======
+<!-- Date Picker Plugin -->
+		<link href="assets/plugins/date-picker/spectrum.css" rel="stylesheet" />
+>>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264

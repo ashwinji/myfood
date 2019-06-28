@@ -96,16 +96,21 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
 
           Route::post('deductthestockquantity','TaskAssignController@deductthestockquantity')->name('deductthestockquantity');
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264
 
 
         Route::resource('admin-purchaseindent','PurchaseIndentController');
         Route::resource('admin-purchaseindentitem','PurchaseIndentItemController');
         Route::get('searchdata','PurchaseIndentItemController@getUnit')->name('data');
     });
+
+
 
 
 

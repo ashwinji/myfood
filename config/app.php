@@ -237,6 +237,9 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Image' => Intervention\Image\Facades\Image::class,
 
+
+
+
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
     ],

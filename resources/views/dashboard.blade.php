@@ -16,7 +16,7 @@
 							<div class="col-sm-12 col-lg-6 col-md-6 col-xl-3 ">
 								<div class="card card-img-holder">
 								    <div class="card-body">
-										<p class="card-text text-muted font-weight-semibold mb-1">Total Customer</p>
+										<iiiip class="card-text text-muted font-weight-semibold mb-1">Total Customer</p>
 										<div class="clearfix">
 											<div class="float-left  mt-2">
 												<h1>6,525</h1>
@@ -175,6 +175,7 @@
 						</div>
          @endsection
 
+
 @section('extrajs')
 {!! Html::script('assets/plugins/peitychart/jquery.peity.min.js') !!}
 {!! Html::script('assets/plugins/peitychart/peitychart.init.js') !!}
@@ -193,3 +194,8 @@
 <script>
 	
 </script>
+
+<script>
+	
+</script>
+
