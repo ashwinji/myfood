@@ -88,11 +88,14 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('admin/delete-assigned-task/{id}','TaskAssignController@deleteassignedtask')->name('delete-assigned-task');
         Route::get('admin/edit-assigned-task/{id}','TaskAssignController@editassignedtask')->name('edit-assigned-task');
         Route::get('admin/saving-updated-value','TaskAssignController@savethetargetupdated')->name('savethetargetupdated');
+
+        Route::post('admin/task_assign','TaskAssignController@getthebusycheflist')->name('getthebusycheflist');
+        Route::get('admin/delete-chef-task/{id}','TaskAssignController@deleteallofthischef')->name('delete-chef-task');
         //////////////////////////////////////////Now assigned task accept and deduct the qty from the stock
         
 
 
-Route::post('deductthestockquantity','TaskAssignController@deductthestockquantity')->name('deductthestockquantity');
+          Route::post('deductthestockquantity','TaskAssignController@deductthestockquantity')->name('deductthestockquantity');
 
 
 

@@ -4,6 +4,7 @@ use App\Slider;
 
 use App\MealAndRecipe;
 use App\MealMaster;
+use App\TaskAssign;
 
 
 
@@ -38,5 +39,31 @@ class InjectService
     		return $checkmealexist->meal_name;
     	}
 
+    }
+
+
+
+
+    ////////////we are viewing the task assigned to a chef on a particular date
+
+    function getthecheflist($assigneddate)
+    {
+        // $cheflist = TaskAssign::where('chef_id',$chefid)->get();
+        // return $cheflist;
+
+
+        $cheflist = TaskAssign::select('chef_id')
+                           ->distinct()
+                           ->where('assigned_date',$assigneddate)
+                           ->get();
+        return $cheflist;
+                           
+    }
+    function gettheassignedrecipelist($assigneddate,$chefid)
+    {
+        $recipelistondate = TaskAssign::where('assigned_date',$assigneddate)
+                                        ->where('chef_id',$chefid)
+                                            ->get();
+        return $recipelistondate;
     }
 }

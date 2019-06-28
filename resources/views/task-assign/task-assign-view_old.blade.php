@@ -1,4 +1,3 @@
-@inject('service', 'App\library\InjectService')
 @extends('layouts.master')
 @section('content')
 
@@ -9,20 +8,20 @@
     </ol>
 </div> -->
 @if(Request::segment(1)==='rawmaterial-edit' || Request::segment(1)==='rawmaterial-add')
-<!-- @if(Request::segment(1)==='rawmaterial-add')
+@if(Request::segment(1)==='rawmaterial-add')
 <?php
-/*$id                    = '';
+$id                    = '';
 $ingredient_name       = '';
 // $qty_in_grams       = '';
-$unit = '';*/
+$unit = '';
 ?>
 @else
 <?php
-/*$id                    = $ingredientlist->id;
+$id                    = $ingredientlist->id;
 $ingredient_name       = $ingredientlist->ingredient_name;
-$unit                  = $ingredientlist->unit;*/
-?> -->
-<!-- @endif
+$unit                  = $ingredientlist->unit;
+?>
+@endif
 
 {{ Form::open(array('route' => 'rawmaterial-save', 'class'=> 'form-horizontal','enctype'=>'multipart/form-data', 'files'=>true)) }}
 {!! Form::hidden('id',$id,array('class'=>'form-control')) !!}
@@ -84,7 +83,7 @@ $unit                  = $ingredientlist->unit;*/
     </div>
 
 </div>
-{{ Form::close() }} -->
+{{ Form::close() }}
 
 @else
 <div class="row">
@@ -95,92 +94,18 @@ $unit                  = $ingredientlist->unit;*/
             <div class="card-options">
                 
                
-<a data-toggle="modal" data-target="#taskassigninfo" data-id="" id="taskassigninfoid" class="btn btn-sm btn-outline-primary" href="javascript:;"> <i class="fa fa-plus"></i> Assign Task </a>
+
+                 <a data-toggle="modal" data-target="#taskassigninfo" data-id="" id="taskassigninfoid" class="btn btn-sm btn-outline-primary" href="javascript:;"> <i class="fa fa-plus"></i> Assign Task </a>
          
 
                 &nbsp;&nbsp;&nbsp;<a href="{{ url()->previous() }}" class="btn btn-sm btn-outline-primary"  data-toggle="tooltip" data-placement="right" title="" data-original-title="Go To Back"><i class="fa fa-mail-reply"></i></a>
-                 
             </div>
         </div>
-<div class="col-lg-5">
-    {{ Form::open(array('route' => 'getthebusycheflist', 'class'=> 'form-horizontal','enctype'=>'multipart/form-data', 'files'=>true)) }} @csrf
-    <input type="date" name="assigned_date" id="assigningdate" value="{{$assigningdt}}"> <input type="submit" value="search">
-       {{ Form::close() }}                       
-
-                            </div>
         {{ Form::open(array('route' => 'raw-material', 'class'=> 'form-horizontal', 'autocomplete'=>'off')) }}
         @csrf
-        
-
-
-
-    
-
-
-
         <div class="card-body">
             <div class="table-responsive">
-@if(Request::segment(2)==='task_assign')
-
-
                 <table id="example" class="table table-striped table-bordered w-100">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Assigned date</th>
-                            <th scope="col">Chef Name</th>       
-                                                              
-                            <th scope="col">Task Assigned with &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quantity</th>         
-                            <!-- <th scope="col">Targeted Quantity</th> -->
-                            
-                            <th scope="col"width="10%"></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php $i=0; ?>
-                        @foreach($tasklist as $tasks)
-                        <tr>
-                            <td></td>
-                            <td>{{$assigningdt}}</td>
-                            <td>{{ $tasks->getUser->name}}</td>   
-                            <td>
-                                <?php $recipelisting =  $service->gettheassignedrecipelist($assigningdt,$tasks->chef_id);  ?>
-                               <ul>
-                               @foreach($recipelisting as $rows2)
-                                   <li>
-                                   {{$rows2->getRecipeMaster->name }}<span class="recipeassigning">{{$rows2->assigned_qty}}</span>
-                                   </li>
-                               @endforeach
-                               <ul>
-                            </td>   
-                            <!-- <td></td>    -->
-                            <!-- <td><input  class="targetedqtytxtbox" type="number"  min="1" max="2000" id="{{$tasks->id}}" value="{{ $tasks->assigned_qty }}" onBlur="saveindbs(this.value,{{$tasks->id}})" readonly /></td>    -->
-                              
-                              
-                            <td>
-                                <div class="btn-group btn-group-xs">                                   
-                                   <!-- <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#taskassigninfo" data-id="{{$tasks->id}}" id="taskassigninfoid" class="btn btn-sm btn-outline-primary" href="javascript:;"> <i class="fa fa-edit"></i> </a> -->
-
-
-                                    <a class="btn btn-sm btn-primary" href="javascript:;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="fa fa-edit"></i></a>
-                                    <!--onClick="changingvalue('{{$tasks->id}}')"-->
-
-                                    <a class="btn btn-sm btn-danger" href="{{route('delete-chef-task',array('id'=>$tasks->chef_id))}}" onClick="return confirm('Are you sure you want to delete this?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
-                                   
-                                </div>
-                            </td>
-                        </tr>
-                       @endforeach                       
-                    </tbody>
-                </table>
-
-
-
-                @else
-        
-
-<table id="example" class="table table-striped table-bordered w-100">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -194,9 +119,9 @@ $unit                  = $ingredientlist->unit;*/
 
                     <tbody>
                         <?php $i=0; ?>
-                        @foreach($tasklist as $tasks)
+                        @foreach($tasklist as $key => $tasks)
                         <tr>
-                            <td></td>
+                            <td>{{ ($tasklist->currentpage()-1) * $tasklist->perpage() + $key + 1 }}</td>
                             <td>{{ $tasks->getUser->name }}</td>   
                             <td>{{ $tasks->getRecipeMaster->name }}</td>   
                             <td>{{ $tasks->assigned_qty }}</td>   
@@ -222,27 +147,9 @@ $unit                  = $ingredientlist->unit;*/
 
                 </table>
 
-
-
-
-
-    @endif
-            </div>            
             </div>
-    
-
- 
-
-
-
-
-
-
-
-
-
-
-
+            
+            </div>
 
             {{ Form::close() }}
         </div>
@@ -253,11 +160,7 @@ $unit                  = $ingredientlist->unit;*/
 
 <!-- Pagination Nav -->
           <div class="pagination-nav text-left mt-60 mtb-xs-30 pull-right" >
-                          <!--links here-->
-                          @if(Request::segment(2)==='task-assign')
-                          <!-- {{ $tasklist->links() }}  -->
-                          @else
-                          @endif
+                          {{ $tasklist->links() }}
              
           </div>
           <!-- End Pagination Nav -->       

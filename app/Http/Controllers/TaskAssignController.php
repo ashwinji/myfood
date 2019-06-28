@@ -9,6 +9,7 @@ use App\TaskAssign;
 use App\Ingredient;
 use App\RawMaterialStock;
 use Carbon\Carbon;
+use DB;
 
 class TaskAssignController extends Controller
 {
@@ -21,8 +22,9 @@ class TaskAssignController extends Controller
 
     public function tasks()
     {
-        $tasklist = TaskAssign::paginate(10);
-    	return view('task-assign.task-assign-view',compact('tasklist'));
+          $tasklist = TaskAssign::paginate(10);
+          $assigningdt = '';
+    	 return view('task-assign.task-assign-view',compact('tasklist','assigningdt'));
     }
 
     public function showtaskassigningpage(Request $request)
@@ -86,9 +88,10 @@ class TaskAssignController extends Controller
         $task = TaskAssign::where('id', $id)->delete();
         notify()->success('Success, Task successfully deleted.');
         // return true;
-        return \Redirect()->back();
-       /*$tasklist = TaskAssign::paginate(10);
-        return view('task-assign.task-assign-view',compact('tasklist'));*/
+        //return \Redirect()->back();
+       $tasklist = TaskAssign::paginate(10);
+          $assigningdt = '';
+       return view('task-assign.task-assign-view',compact('tasklist','assigningdt'));
     }
 
     public function savethetargetupdated(Request $request)
@@ -165,21 +168,38 @@ class TaskAssignController extends Controller
          {
 
          }
-              
                return 'Stock is deducted';
-           
-
-
-
-
-
-
-
-
 
       //  notify()->error('Oops!!!, Running out of stock.');
       ///  return 'true';
-         
-         
     }
+
+    public function getthebusycheflist(Request $request)
+    {
+      $assigningdt = $request->assigned_date;
+      $tasklist  = TaskAssign::select('chef_id')
+                           ->distinct()
+                           ->where('assigned_date',$assigningdt)
+                           ->get();
+        return view('task-assign.task-assign-view',compact('tasklist','assigningdt'));
+
+    }
+
+    public function deleteallofthischef($chefid)
+    {
+        //dd($id);
+        if(TaskAssign::where('chef_id', $chefid)->count()<1)
+        {
+            notify()->error('Oops!!!, something went wrong, please try again.');
+            return \Redirect()->back();
+        }
+        $task = TaskAssign::where('chef_id', $chefid)->delete();
+        notify()->success('Success, Task successfully deleted.');
+        // return true;
+       // return \Redirect()->back();
+        $tasklist = TaskAssign::paginate(10);
+          $assigningdt = '';
+       return view('task-assign.task-assign-view',compact('tasklist','assigningdt'));
+    }
+
 }

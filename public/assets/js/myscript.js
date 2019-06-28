@@ -128,3 +128,6 @@ function deductthestock(taskassignedcheckbox)
 }
 
 
+////////////////////taskassignview new change
+
+
