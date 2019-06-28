@@ -8,12 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class MealMaster extends Model
 {
-<<<<<<< HEAD
-   protected $fillable = [
-=======
 
     protected $fillable = [
->>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264
+
          'meal_name','status'
     ];
 
