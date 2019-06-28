@@ -98,6 +98,7 @@ $expected_price  = $rawmateriallist->expected_price;
 </div>
 {{ Form::close() }}
 
+
 @else
 <div class="row">
 <div class="col-12">
@@ -127,10 +128,10 @@ $expected_price  = $rawmateriallist->expected_price;
                     </thead>
 
                     <tbody>
-                        @php $i = 0 @endphp
-                        @foreach($rawmateriallist as $rows)
+                        
+                        @foreach($rawmateriallist as $key=>$rows)
                         <tr>
-                            <td>{!! ++$i !!}</td>
+                            <td>{{ ($rawmateriallist->currentpage()-1) * $rawmateriallist->perpage() + $key + 1 }}</td>
                             <td>{!! $rows->item_name!!}</td>   
                             <td>{!! $rows->unitname->name !!}</td>   
                             <td>{!! $rows->expected_price !!}</td>   
@@ -156,6 +157,12 @@ $expected_price  = $rawmateriallist->expected_price;
         </div>
     </div>
 </div>
+
+
+<div class="pagination-nav text-left mt-60 mtb-xs-30 pull-right" >
+                          {{ $rawmateriallist->links() }}
+          </div>
+
 @endif
 
 @endsection

@@ -71,12 +71,35 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('admin/recipe-add','RecipeMasterController@recipeadd')->name('recipe-add');
         Route::post('admin/recipe-save','RecipeMasterController@recipesave')->name('recipe-save');
         Route::get('admin/recipe-edit/{id}','RecipeMasterController@recipeedit')->name('recipe-edit');
+        Route::get('admin/recipe-delete/{id}','RecipeMasterController@recipedelete')->name('recipe-delete');
 
-  
+        Route::post('gettheunit','RecipeMasterController@gettheunit');
+
+       //////////////////////Meal and recipe ///////////////////////
+        Route::get('admin/meal-recipe','MealMasterController@mealrecipe')->name('meal-recipe'); 
+        Route::post('admin/getmealinfofillform','MealMasterController@showmealandrecipepage')->name('getmealinfofillform');  
+        Route::post('admin/meal_recipe_save','MealMasterController@meal_recipe_save')->name('meal_recipe_save');     
+        Route::get('admin/meal-recipe-delete/{id}','MealMasterController@mealrecipedelete')->name('mealrecipedelete');
+
+        ///////////////////////////////////////////////Now task assign
+        Route::get('admin/task-assign','TaskAssignController@tasks')->name('task-assign');
+        Route::post('admin/gettaskassignfillform','TaskAssignController@showtaskassigningpage')->name('gettaskassignfillform');
+        Route::post('admin/filltaskassign','TaskAssignController@fillthetask')->name('filltaskassign');  
+        Route::get('admin/delete-assigned-task/{id}','TaskAssignController@deleteassignedtask')->name('delete-assigned-task');
+        Route::get('admin/edit-assigned-task/{id}','TaskAssignController@editassignedtask')->name('edit-assigned-task');
+        Route::get('admin/saving-updated-value','TaskAssignController@savethetargetupdated')->name('savethetargetupdated');
+        //////////////////////////////////////////Now assigned task accept and deduct the qty from the stock
+        
+
+
+Route::post('deductthestockquantity','TaskAssignController@deductthestockquantity')->name('deductthestockquantity');
+
 
 
 
 	});
+
+
 
 });
 

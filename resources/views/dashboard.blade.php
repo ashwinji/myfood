@@ -212,7 +212,7 @@
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header ">
-										<h3 class="card-title ">Upcoming Deadlines</h3>
+										<h3 class="card-title ">Chef Task View </h3>
 
 									</div>
 									<div class="table-responsive">
@@ -220,106 +220,51 @@
 											<thead>
 											  <tr>
 												<th scope="col">ID</th>
-												<th scope="col">Employee</th>
-												<th scope="col">Project Name</th>
-												<th scope="col">Issues</th>
-												<th scope="col">Deadline</th>
-												<th scope="col">Team Members</th>
-												<th scope="col">WorkLoad </th>
+												<th scope="col">Recipe Name</th>
+												<th scope="col">Assigned Qty</th>
+												<th scope="col">Assigned on</th>
+												<th scope="col">Completed Qty</th>
+												<th scope="col">Comleted on</th>
+												<th scope="col">Reason </th>
+												<th scope="col">Accept </th>
 											  </tr>
 											</thead>
 											<tbody>
+                                           <?php $i=0; ?>
+                                        @foreach($assignedtask as $tasklist)
 											  <tr>
-												<th scope="row">1</th>
-												<td>Juliette</td>
-												<td>At vero eos et accusamus et iusto odio </td>
-												<td>CMS Issue</td>
-												<td>02/01/2019</td>
-												<td>5 Members</td>
+												<th scope="row"><?= ++$i ?></th>
+												<td>{{$tasklist->getRecipeMaster->name}}</td>
+												<td style="width:5%;">{{$tasklist->assigned_qty}} </td>
+												<td>{{$tasklist->assigned_date}}</td>
+												<td style="width:2%;"><input type="number" class="form-control" min="1" ></td>
+												<td>
+										<!-- <div class="wd-200 mg-b-30">
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<div class="input-group-text">
+														<i class="fa fa-calendar tx-16 lh-0 op-6"></i>
+													</div>
+												</div><input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text">
+											</div>
+										
+																			</div> --></td>
 												<td>
 													<div class="progress progress-md mt-1 h-2">
 														<div class="progress-bar  progress-bar-animated bg-success w-70"></div>
 													</div>
 												</td>
+												<td><label class="colorinput">
+													<input name="color" type="checkbox" id="{{$tasklist->id}}" value="azure" class="colorinput-input" onchange="deductthestock(this)"  />
+																<span class="colorinput-color bg-azure"></span>
+															</label>
+
+														</td>
 											  </tr>
-											  <tr>
-												<th scope="row">2</th>
-												<td>Brock Lee</td>
-												<td>voluptatum deleniti atque corrupti quos</td>
-												<td>DNS Issue</td>
-												<td>13/01/2019</td>
-												<td>4 Members</td>
-												<td>
-													<div class="progress progress-md mt-1 h-2">
-														<div class="progress-bar  progress-bar-animated bg-primary w-30"></div>
-													</div>
-												</td>
-											  </tr>
-											  <tr>
-												<th scope="row">3</th>
-												<td>Brock Lee</td>
-												<td >dignissimos ducimus qui blanditiis praesentium</td>
-												<td>Hardware Failure</td>
-												<td >18/01/2019</td>
-												<td >5 Members</td>
-												<td>
-													<div class="progress progress-md mt-1 h-2">
-														<div class="progress-bar  progress-bar-animated bg-warning w-45"></div>
-													</div>
-												</td>
-											  </tr>
-											  <tr>
-												<th scope="row">4</th>
-												<td>Robin</td>
-												<td>deleniti atque corrupti quos dolores </td>
-												<td>Host Provider</td>
-												<td >21/01/2019</td>
-												<td >10 Members</td>
-												<td>
-													<div class="progress progress-md mt-1 h-2">
-														<div class="progress-bar  progress-bar-animated bg-secondary w-35"></div>
-													</div>
-												</td>
-											  </tr>
-											  <tr>
-												<th scope="row">5</th>
-												<td>Anne Fibbiyon</td>
-												<td>et quas molestias excepturi sint occaecati</td>
-												<td>Hardware Failure</td>
-												<td >28/01/2019</td>
-												<td >3 Members</td>
-												<td>
-													<div class="progress progress-md mt-1 h-2">
-														<div class="progress-bar  progress-bar-animated bg-pink w-60"></div>
-													</div>
-												</td>
-											  </tr>
-											  <tr>
-												<th scope="row">6</th>
-												<td>Anthony</td>
-												<td>At vero eos et accusamus et iusto odio </td>
-												<td>CMS Issue</td>
-												<td>05/02/2019</td>
-												<td>6 Members</td>
-												<td>
-													<div class="progress progress-md mt-1 h-2">
-														<div class="progress-bar  progress-bar-animated bg-success w-40"></div>
-													</div>
-												</td>
-											  </tr>
-											  <tr>
-												<th scope="row">7</th>
-												<td>Jennifer</td>
-												<td>At vero eos et accusamus et iusto odio </td>
-												<td>DNS Issue</td>
-												<td>12/02/2019</td>
-												<td>4 Members</td>
-												<td>
-													<div class="progress progress-md mt-1 h-2">
-														<div class="progress-bar  progress-bar-animated bg-primary w-60"></div>
-													</div>
-												</td>
-											  </tr>
+                                      @endforeach
+
+											  
+											  
 											</tbody>
 										  </table>
 									</div>
@@ -327,3 +272,7 @@
 							</div>
 						</div>
          @endsection
+
+<script>
+	
+</script>

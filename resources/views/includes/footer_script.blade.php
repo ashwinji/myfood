@@ -24,3 +24,11 @@
 {!! Html::script('assets/js/othercharts.js') !!}
 {!! Html::script('assets/plugins/chart/Chart.bundle.js') !!}
 {!! Html::script('ssets/plugins/othercharts/jquery.knob.js') !!}
+
+<!-- its my Ashwin script js -->
+{!! Html::script('assets/js/myscript.js') !!}
+
+<!-- Datepicker js -->
+		<script src="assets/plugins/date-picker/spectrum.js"></script>
+		<script src="assets/plugins/date-picker/jquery-ui.js"></script>
+		<script src="assets/plugins/input-mask/jquery.maskedinput.js"></script>

@@ -24,9 +24,7 @@ class RawMaterialMaster extends Model
   }
 
     
-    protected $fillable = [
-         'item_name','unit','expected_price'
-    ];
+    
 
     public function getRawMaterialStocks()
    {
