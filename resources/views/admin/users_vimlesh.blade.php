@@ -7,10 +7,7 @@
         <li class="active"><span>User Management</span></li>
     </ol>
 </div> -->
-
-
 @if(Request::segment(1)==='edit-user' || Request::segment(1)==='add-user')
-
 @if(Request::segment(1)==='add-user')
 <?php
 $id             = '';
@@ -18,10 +15,13 @@ $name           = '';
 $email          = '';
 $address        = '';
 $mobile         = '';
+$address        = '';
+$companyName    = '';
 $status         = '';
+$tw_account_sid = '';
+$tw_auth_token  = '';
+$tw_mobile_num  = '';
 $userRole       = '';
-$zip            = '';
-$city           = '';
 ?>
 @else
 <?php
@@ -30,10 +30,13 @@ $name           = $user->name;
 $email          = $user->email;
 $address        = $user->address;
 $mobile         = $user->mobile;
+$address        = $user->address;
+$companyName    = $user->companyName;
 $status         = $user->status;
+$tw_account_sid = $user->tw_account_sid;
+$tw_auth_token  = $user->tw_auth_token;
+$tw_mobile_num  = $user->tw_mobile_num;
 $userRole       = $userRole;
-$zip            = $user->zipCode;
-$city           = $user->city;
 ?>
 @endif
 
@@ -116,18 +119,6 @@ $city           = $user->city;
                         </div>
                     </div>
 
-                      <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="city" class="form-label">City</label>
-                            {!! Form::text('city',$city,array('id'=>'city','class'=> $errors->has('city') ? 'form-control is-invalid state-invalid' : 'form-control', 'placeholder'=>'city', 'autocomplete'=>'off','required'=>'required')) !!}
-                            @if ($errors->has('city'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('city') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-                    </div>
-
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="address" class="form-label">Address</label>
@@ -140,31 +131,18 @@ $city           = $user->city;
                         </div>
                     </div>
 
-
-<div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="zip" class="form-label">Zip Code</label>
-                            {!! Form::text('zip',$zip,array('id'=>'zip','class'=> $errors->has('zip') ? 'form-control is-invalid state-invalid' : 'form-control', 'placeholder'=>'Zip', 'autocomplete'=>'off','required'=>'required')) !!}
-                            @if ($errors->has('zip'))
+                            <label for="companyName" class="form-label">Company Name</label>
+                            {!! Form::text('companyName',$companyName,array('id'=>'companyName','class'=> $errors->has('companyName') ? 'form-control is-invalid state-invalid' : 'form-control', 'placeholder'=>'Company Name', 'autocomplete'=>'off','required'=>'required')) !!}
+                            @if ($errors->has('companyName'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('address') }}</strong>
+                                <strong>{{ $errors->first('companyName') }}</strong>
                             </span>
                             @endif
                         </div>
                     </div>
-                    
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="roles" class="form-label">Status</label>
-                            <select name="status" class="form-control show-tick">
-
-                                <option value="0" @if($status == '0') selected @endif>Inactive</option>
-                                <option value="1" @if($status == '1') selected @endif>Active</option>
-                                <option value="2" @if($status == '2') selected @endif>Delete</option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="roles" class="form-label">Role</label>
@@ -198,9 +176,35 @@ $city           = $user->city;
                 </div>
             </div>
             <div class="card-body">
-                
-                
-                
+                <div class="form-group">
+                    <label for="tw_account_sid" class="form-label">Twilio Account Sid</label>
+                    {!! Form::text('tw_account_sid',$tw_account_sid,array('id'=>'tw_account_sid','class'=> $errors->has('tw_account_sid') ? 'form-control is-invalid state-invalid' : 'form-control', 'placeholder'=>'Twilio Account Sid', 'autocomplete'=>'off','required'=>'required')) !!}
+                    @if ($errors->has('tw_account_sid'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('tw_account_sid') }}</strong>
+                    </span>
+                    @endif
+                </div>
+
+                <div class="form-group">
+                    <label for="tw_auth_token" class="form-label">Twilio Auth Token</label>
+                    {!! Form::text('tw_auth_token',$tw_auth_token,array('id'=>'tw_auth_token','class'=> $errors->has('tw_auth_token') ? 'form-control is-invalid state-invalid' : 'form-control', 'placeholder'=>'Twilio Auth Token', 'autocomplete'=>'off','required'=>'required')) !!}
+                    @if ($errors->has('tw_auth_token'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('tw_auth_token') }}</strong>
+                    </span>
+                    @endif
+                </div>
+
+                <div class="form-group">
+                    <label for="tw_mobile_num" class="form-label">Twilio Mobile Number</label>
+                    {!! Form::text('tw_mobile_num',$tw_mobile_num,array('id'=>'tw_mobile_num','class'=> $errors->has('tw_mobile_num') ? 'form-control is-invalid state-invalid' : 'form-control', 'placeholder'=>'Twilio Mobile Number', 'autocomplete'=>'off','required'=>'required')) !!}
+                    @if ($errors->has('tw_mobile_num'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('tw_mobile_num') }}</strong>
+                    </span>
+                    @endif
+                </div>
 
                 <div class="form-footer">
                     {!! Form::submit('Save', array('class'=>'btn btn-primary btn-block')) !!}
@@ -212,7 +216,6 @@ $city           = $user->city;
 {{ Form::close() }}
 
 @elseif(Request::segment(1)==='view-user')
-<?php echo "two"; die; ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -510,7 +513,6 @@ $city           = $user->city;
 </div>
 
 @else
-
 <div class="row">
 <div class="col-12">
     <div class="card">
@@ -535,7 +537,7 @@ $city           = $user->city;
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Mobile</th>
-                            <th scope="col">Address</th>
+                            <th scope="col">Company</th>
                             <th scope="col">Status</th>
                             <th scope="col"width="10%">Action</th>
                         </tr>
@@ -554,8 +556,8 @@ $city           = $user->city;
                             <td>{!! ++$i !!}</td>
                             <td>{!! $rows->name !!}</td>
                             <td>{!! $rows->email !!}</td>
-                            <td>{!! $rows->mobile !!}</td>
-                            <td>{!! $rows->address !!}</td>
+                            <td>{!! $rows->contactNo !!}</td>
+                            <td>{!! $rows->companyName !!}</td>
                             <td class="text-center">
                                 <div class="btn-group btn-group-xs ">
                                     @if($rows->status=='0') 
@@ -567,13 +569,15 @@ $city           = $user->city;
                             </td>
                             <td>
                                 <div class="btn-group btn-group-xs">
-                                    
-                                    <a class="btn btn-sm btn-secondary" href="{{ route('user-view',$rows->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"><i class="fa fa-eye"></i></a>
-                                                                       
-                                    <a class="btn btn-sm btn-primary" href="{{ route('user-edit',$rows->id) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                                    
-                                    <a class="btn btn-sm btn-danger" href="{{ route('user-delete',$rows->id) }}" onClick="return confirm('Are you sure you want to delete this?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
-                                    
+                                    @can('user-view')
+                                    <a class="btn btn-sm btn-secondary" href="{{ route('user-view',$rows->app_key) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                    @endcan
+                                    @can('user-edit')
+                                    <a class="btn btn-sm btn-primary" href="{{ route('user-edit',$rows->app_key) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                                    @endcan
+                                    @can('user-delete')
+                                    <a class="btn btn-sm btn-danger" href="{{ route('user-delete',$rows->app_key) }}" onClick="return confirm('Are you sure you want to delete this?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
