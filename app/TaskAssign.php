@@ -15,7 +15,7 @@ class TaskAssign extends Model
 
     public function getUser()
    {
-       return $this->belongsTo(User::class, 'user_id','id');
+       return $this->belongsTo(User::class, 'chef_id','id');
    }
 
    public function getRecipeMaster()

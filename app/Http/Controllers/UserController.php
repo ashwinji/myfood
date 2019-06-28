@@ -22,8 +22,11 @@ class UserController extends Controller
 
     public function users()
     {
-        $data = User::where('userType','!=','admin')->get();
-        return View('admin.users')->with('data', $data);
+
+        // $data = User::where('userType','==','admin')->get();
+        $data = User::get();
+        // dd($data);
+        return View('admin.users',compact('data'));
     }
 
     public function viewuser($id)
@@ -93,11 +96,14 @@ class UserController extends Controller
 
     public function saveuser(Request $request)
     {
+
         $this->validate($request, [
             'name'        		=> 'required',
             'email'       		=> 'required|email',
-            'mobile'     		=> 'required',
-            'address'   		=> 'required'
+            'mobile'     		=> 'required|numeric',
+            'address'   		=> 'required',
+            'city'              =>'required',
+            'zip'              =>'required',
         ]);
 
         if(!empty($request->id))
@@ -106,7 +112,11 @@ class UserController extends Controller
                 'name'        		=> $request->name,
                 'email'       		=> $request->email,
                 'mobile'     		=> $request->mobile,
-                'address'     		=> $request->address
+                'address'           => $request->address,
+                'status'            => $request->status,
+                'zipCode'               => $request->zip,
+                'city'     		    => $request->city,
+
             ];
 
             $user = User::find($request->id);
@@ -130,6 +140,10 @@ class UserController extends Controller
             $input['password'] 		= bcrypt($input['password']);
             $input['app_key'] 		= str_random(25);
             $input['app_secret'] 	= str_random(15);
+            $input['api_token']     =str_random(25);
+            $input['zipCode']       =$request->zip;
+            $input['status']        =$request->status;
+
 
             $user = User::create($input);
             if(!empty($request->input('roles')))

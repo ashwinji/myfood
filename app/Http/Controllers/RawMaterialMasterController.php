@@ -21,7 +21,7 @@ class RawMaterialMasterController extends Controller
 
     public function rawmaterialList(){
 
-  		$rawmateriallist = RawMaterialMaster::get();
+  		$rawmateriallist = RawMaterialMaster::paginate(10);
         //$unitlist = WeightUnit::get();
         return View('raw-material.raw-material-view',compact('rawmateriallist'));
   	}

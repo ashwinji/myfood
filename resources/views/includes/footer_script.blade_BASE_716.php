@@ -13,10 +13,14 @@
 {!! Html::script('assets/plugins/datatable/datatable.js') !!}
 {!! Html::script('assets/js/custom.js') !!}
 {!! Html::script('assets/js/functions.js') !!}
-
-
-
-
-
-
-
+{!! Html::script('assets/plugins/peitychart/jquery.peity.min.js') !!}
+{!! Html::script('assets/plugins/peitychart/peitychart.init.js') !!}
+{!! Html::script('assets/plugins/flot/jquery.flot.js') !!}
+{!! Html::script('assets/plugins/flot/jquery.flot.fillbetween.js') !!}
+{!! Html::script('assets/plugins/flot/jquery.flot.pie.js') !!}
+{!! Html::script('assets/plugins/echarts/echarts.js') !!}
+{!! Html::script('assets/js/index1.js') !!}
+{!! Html::script('assets/plugins/flot/jquery.flot.pie.js') !!}
+{!! Html::script('assets/js/othercharts.js') !!}
+{!! Html::script('assets/plugins/chart/Chart.bundle.js') !!}
+{!! Html::script('ssets/plugins/othercharts/jquery.knob.js') !!}

@@ -16,7 +16,7 @@ class UnitMasterController extends Controller
 
     public function unitList(){
 
-  		$data = UnitMaster::get();
+  		$data = UnitMaster::paginate(10);
         //$unitlist = WeightUnit::get();
         return View('units.unit-view',compact('data'));
   	}

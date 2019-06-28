@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MealMaster extends Model
 {
-   protected $fillable = [
+
+    protected $fillable = [
          'meal_name','status'
     ];
 

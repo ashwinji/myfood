@@ -47,18 +47,10 @@ $recipe_status          = $data->ingredient;
               </div>
                 <div class="card-body">
                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="recipe_status" class="form-label">Status</label>
-                            <select name="recipe_status" class="form-control show-tick" required> 
-                            <option value="1" @if($recipe_status == '1') selected @endif>Active</option>
-                            <option value="0" @if($recipe_status == '0') selected @endif>Inactive</option>
-                            </select>
-                          </div>
-                        </div>
+                      
                     
                     
-                     <div class="col-md-6">
+                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="name" class="form-label">Recipe Name</label>
                             {!! Form::text('name',$name,array('id'=>'name','class'=> $errors->has('name') ? 'form-control is-invalid state-invalid' : 'form-control', 'placeholder'=>'Food product name', 'autocomplete'=>'off','required'=>'required')) !!}
@@ -70,13 +62,9 @@ $recipe_status          = $data->ingredient;
                         </div>
                      </div>
                  
-                    @if(Request::segment(1)==='recipe-edit' && $image_path!='')         
-                      <div class="col-md-12">
-                        <img src="{{url('/')}}/assets/uploads/recipe/{!! $image_path !!}" width="150px">
-                      </div>
-                     @endif
+                    
 
-                     <div class="col-md-12">
+                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="image_path" class="form-label">Image</label>                         
                                 <div class="custom-file">
@@ -112,6 +100,94 @@ $recipe_status          = $data->ingredient;
                                 <strong>{{ $errors->first('recipe_method') }}</strong>
                             </span>
                             @endif
+                        </div>
+                    </div>
+                    @if(Request::segment(2)==='recipe-edit' && $image_path!='')         
+                      <div class="col-md-6">
+                        <img src="{{url('/')}}/{!! $image_path !!}" width="150px">
+                      </div>
+                     @endif
+                    <div class="col-md-12">
+                        <div class="form-group">
+                          Add the ingredients
+                           <!-- I have done this -->
+            <?php $i =1; ?>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example11" class="table table-striped table-bordered w-100">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item Name</th> 
+                                <th scope="col" style="width:50%;">Qty </th>
+                            
+                               
+                                <th scope="col" class="text-center"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="itemSection">
+                           
+                       @if(!empty($ingrelist))
+                            @foreach($ingrelist as $ingre)
+                            <tr class="blockItem">
+                                
+                                <td>
+                                   <input type="hidden" class="form-control" name="item[]" value="{{ $ingre->item_id }}" >
+                                   <span>{{ $ingre->getRawMaterialMaster->item_name }}</span>
+                                </td>   
+                                <td><input type="text" class="form-control" name="qty[]" value="{{$ingre->standard_qty}}" readonly>
+                                </td>
+                                <td><div class="btn-group btn-group-xs" style="margin-left: 100px;"> <a class="btn btn-sm btn-danger removeItem" href="javascript:;" data-toggle="tooltip" data-placement="top" title="remove" data-original-title="Remove This"><i class="fa fa-minus" ></i></a> </div></td>
+                             
+                           </tr>
+                           @endforeach
+                           @else
+                           @endif
+
+
+
+                            <tr class="blockItem">
+                                <td>
+                                    <select class="form-control" name="item[]" id="item1" onchange="gettheunit(this.value,1)" >
+                                        <option value="">--Select Item--</option>
+                                        @foreach($itemlist as $itm)
+                                        <option value="{{$itm->id}}">{{$itm->item_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>   
+                                <td><input style="width:80%; display: inline-block;" type="text" class="form-control" id="qty1" name="qty[]" value="0.00">
+                                    <span style="width:15%; display: inline-block;" id="unitname<?= $i ?>"></span>
+                                </td>
+                                
+                                
+                                                                  
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-xs">   
+
+                                       <a class="btn btn-sm btn-secondary addMoreItem" href="javascript:;" data-toggle="tooltip"  data-placement="top" title="" data-original-title="Add new "><i class="fa fa-plus"></i></a>
+
+                             
+                                   </div>
+                               </td>
+                           </tr>
+                           
+                       </tbody>
+                   </table>
+               </div>
+
+            </div>
+        
+            <!-- I have done this -->
+
+            <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="recipe_status" class="form-label">Status</label>
+                            <select name="recipe_status" class="form-control show-tick" required> 
+                            <option value="1" @if($recipe_status == '1') selected @endif>Active</option>
+                            <option value="0" @if($recipe_status == '0') selected @endif>Inactive</option>
+                            </select>
+                          </div>
+                        </div>
                         </div>
                     </div>
                      
@@ -157,20 +233,21 @@ $recipe_status          = $data->ingredient;
                     </thead>
 
                     <tbody>
-                        @php $i = 0 @endphp
-                        @foreach($data as $rows)
+                        
+                        @foreach($data as $key=>$rows)
                         <tr>
-                            <td>{!! ++$i !!}</td>
+                            <td>{{ ($data->currentpage()-1) * $data->perpage() + $key + 1 }}</td>
                             <td>{{ $rows->name }}</td>   
                             <td>{{ $rows->recipe_info }}</td>
                             <td>{{ $rows->recipe_method }}</td> 
-                            <td>{{ $rows->recipe_status }} </td>
-                            <td><img src="{{url('/')}}/assets/images/uploads/{!! $rows->image_path !!}" width="80px"></td>
+                            <td>@if($rows->recipe_status ==1) Active @else Inactive @endif </td>
+                                
+                            <td><img src="{{url('/')}}/{!! $rows->image_path !!}" width="80px"></td>
                               
                             <td>
                                 <div class="btn-group btn-group-xs">                                   
                                     <a class="btn btn-sm btn-primary" href="{{ route('recipe-edit',array('id'=>$rows->id)) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                                    <a class="btn btn-sm btn-danger" href="{{ route('recipe',$rows->id) }}" onClick="return confirm('Are you sure you want to delete this?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
+                                    <a class="btn btn-sm btn-danger" href="{{ route('recipe-delete',$rows->id) }}" onClick="return confirm('Are you sure you want to delete this?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a>
                                     
                                 </div>
                             </td>
@@ -185,6 +262,27 @@ $recipe_status          = $data->ingredient;
         </div>
     </div>
 </div>
+
+
+
+  <div class="pagination-nav text-left mt-60 mtb-xs-30 pull-right" >
+                          {{ $data->links() }}
+          </div>
+
 @endif
 
+@endsection
+
+
+@section('extrajs')
+<script type="text/javascript">
+var i = 2;
+$('.addMoreItem').click(function() {
+$('.blockItem:last').after('<tr class="blockItem"> <td> <select class="form-control" name="item[]" id="item'+i+'" onchange="gettheunit(this.value, '+i+')" ><option value="">--Select Item--</option> @foreach($itemlist as $itm) <option value="{{$itm->id}}">{{$itm->item_name}}</option> @endforeach </select> </td> <td> <input style="width:80%; display: inline-block;" type="text" class="form-control" id="qty'+i+'" name="qty[]"  value="0.00"><span style="width:15%; display: inline-block;" id="unitname'+i+'"></span> </td>   <td class="text-center"> <div class="btn-group btn-group-xs"> <a class="btn btn-sm btn-danger removeItem" href="javascript:;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Remove This>"><i class="fa fa-minus"></i></a> </div> </td> </tr>'); 
+    i++;
+});
+$('.itemSection').on('click','.removeItem',function() {
+  $(this).parents(".blockItem").remove();
+});
+</script>
 @endsection

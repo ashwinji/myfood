@@ -88,11 +88,11 @@ $weight_unit              = $unitrow->name;
                         </tr>
                     </thead>
                     <tbody>
-                        @php $i = 0 @endphp
-                        @foreach($data as $rows)
+                        
+                        @foreach($data as $key=>$rows)
                        
                         <tr>
-                            <td>{!! ++$i; !!}</td>                           
+                            <td>{{ ($data->currentpage()-1) * $data->perpage() + $key + 1 }}</td>                           
                             
                             <td>{!! $rows->name !!}</td>                         
                             <td>
@@ -111,6 +111,12 @@ $weight_unit              = $unitrow->name;
         </div>
     </div>
 </div>
+
+ <div class="pagination-nav text-left mt-60 mtb-xs-30 pull-right" >
+                          {{ $data->links() }}
+          </div>
+
+
 @endif
 
 @endsection

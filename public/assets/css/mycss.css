@@ -1,0 +1,20 @@
+.targetedqtytxtbox
+{
+	border:0px solid black;
+
+}
+
+.editingtextbox
+{
+	border:2px solid black;
+}
+
+
+.recipeassigning
+{
+	/*background:green;*/
+	width:100px;
+	float:right;
+	text-align: left;
+	margin-right:220px;
+}
