@@ -72,11 +72,12 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::post('admin/recipe-save','RecipeMasterController@recipesave')->name('recipe-save');
         Route::get('admin/recipe-edit/{id}','RecipeMasterController@recipeedit')->name('recipe-edit');
 
-  
+        /////////////PurchaseIndent////////////////////
 
-
-
-	});
+        Route::resource('admin-purchaseindent','PurchaseIndentController');
+        Route::resource('admin-purchaseindentitem','PurchaseIndentItemController');
+        Route::get('searchdata','PurchaseIndentItemController@getUnit')->name('data');
+    });
 
 });
 

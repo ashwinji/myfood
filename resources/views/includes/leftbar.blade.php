@@ -70,9 +70,19 @@
 				</ul>
 			</li>
 
-
-
-		<li>
+			 <li class="slide">
+				<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-table"></i><span class="side-menu__label">Purchase Indent</span><i class="angle fa fa-angle-right"></i></a>
+				<ul class="slide-menu">
+					<li>
+						<a href="{{route('admin-purchaseindent.index')}}" class="slide-item">Purchase Indent</a>
+					</li>
+					<li>
+						<a href="{{route('admin-purchaseindentitem.index')}}" class="slide-item">Purchase Indent Item</a>
+					</li>
+				</ul>
+			</li>
+         
+         <li>
 			<a class="side-menu__item" href="{{ route('need-help') }}"><i class="side-menu__icon fa fa-question-circle"></i><span class="side-menu__label">Help & Support</span></a>
 		</li>
 
