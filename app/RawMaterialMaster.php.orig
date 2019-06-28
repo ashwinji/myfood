@@ -19,13 +19,13 @@ class RawMaterialMaster extends Model
     
 
     use SoftDeletes;
-:wq
-
+   
 =======
 >>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264
     protected $fillable = ['item_name','unit','expected_price'];
 
-   public function unitname()
+
+     public function unitname()
    {
        return $this->belongsTo('App\UnitMaster', 'unit', 'id');
 

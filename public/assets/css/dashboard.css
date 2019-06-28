@@ -1719,7 +1719,7 @@ pre code {
 .form-control:focus {
 	color: #6f6e6e;
 	background-color: #fff;
-	border-color: #60ff2c ;
+	border-color: #FF4500 ;
 	outline: 0;
 	box-shadow: 0 0 0 2px rgba(70, 127, 207, 0.25);
 }

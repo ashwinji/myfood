@@ -28,8 +28,8 @@
 	@include('includes.footer_script')
 	@notify_js
 	@notify_render
-	@yield('extrajs')
-	<script type="text/javascript">
+    @yield('extrajs')
+    <script type="text/javascript">
 		setIdleTimeout(<?= 1000*60*Auth::user()->locktimeout; ?>, function() {
 		window.location.href = "{{ route('screenlock', [time(), Auth::user()->id, MD5(str_random(10))]) }}";
 		}, function() {});

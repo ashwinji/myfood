@@ -22,7 +22,7 @@ class CreatePurchaseIndentItemsTable extends Migration
             $table->decimal('price',9,2);
             $table->decimal('accept_qty',9,2)->nullable();
             $table->enum('item_status',['Process','Complete'])->nullable()->default(null);
-            $table->date('complete_date')->nullbale();
+            $table->date('complete_date')->nullable();
 
             $table->foreign('purchase_indent_id')->references('id')->on('purchase_indents')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('raw_material_masters')->onDelete('cascade');
