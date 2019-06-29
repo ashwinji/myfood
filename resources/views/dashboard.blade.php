@@ -1,4 +1,9 @@
 @extends('layouts.master')
+@section('extracss')
+{!! Html::style('assets/plugins/charts-c3/c3-chart.css') !!}
+{!! Html::style('assets/plugins/morris/morris.css') !!}
+
+@endsection
 @section('content')
                      <div class="page-header">
 							<h4 class="page-title">Dashboard</h4>
@@ -216,56 +221,90 @@
 
 									</div>
 									<div class="table-responsive">
+										
+
+
+{{ Form::open(array('route' => 'submitdailycheftask', 'class'=> 'form-horizontal','enctype'=>'multipart/form-data', 'files'=>true)) }}
+@csrf
+
+
+
+
 										<table class="table table-hover card-table table-striped table-vcenter table-outline text-nowrap">
 											<thead>
 											  <tr>
 												<th scope="col">ID</th>
+												@if($hisrole =='admin') 
+												<th scope="col">Chef Name</th>
+												@else
+												@endif
 												<th scope="col">Recipe Name</th>
 												<th scope="col">Assigned Qty</th>
-												<th scope="col">Assigned on</th>
-												<th scope="col">Completed Qty</th>
-												<th scope="col">Comleted on</th>
-												<th scope="col">Reason </th>
-												<th scope="col">Accept </th>
+												<th scope="col" style="width:20%">Assigned on</th>
+												
+												<th scope="col" style="width:20%">Completed Qty </th>
+												
+												@if($hisrole !='admin') 
+												<th scope="col" class="reasontxtbox">Reason</th>
+												@else
+												<th scope="col" >Reason</th>
+												@endif
+												<th></th> 
 											  </tr>
 											</thead>
 											<tbody>
                                            <?php $i=0; ?>
                                         @foreach($assignedtask as $tasklist)
 											  <tr>
-												<th scope="row"><?= ++$i ?></th>
-												<td>{{$tasklist->getRecipeMaster->name}}</td>
-												<td style="width:5%;">{{$tasklist->assigned_qty}} </td>
-												<td>{{$tasklist->assigned_date}}</td>
-												<td style="width:2%;"><input type="number" class="form-control" min="1" ></td>
-												<td>
-										<!-- <div class="wd-200 mg-b-30">
-											<div class="input-group">
-												<div class="input-group-prepend">
-													<div class="input-group-text">
-														<i class="fa fa-calendar tx-16 lh-0 op-6"></i>
-													</div>
-												</div><input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text">
-											</div>
-										
-																			</div> --></td>
-												<td>
-													<div class="progress progress-md mt-1 h-2">
-														<div class="progress-bar  progress-bar-animated bg-success w-70"></div>
-													</div>
+												<td scope="row"><?= ++$i ?>
+												<input type="hidden" name="taskarray[]" value="{{$tasklist->id}}">
 												</td>
-												<td><label class="colorinput">
+                                                @if($hisrole =='admin') 
+												<td>{{ $tasklist->getUser->name}}</td>
+												@else
+												@endif
+
+												<td>{{$tasklist->getRecipeMaster->name}}</td>
+		<td style="width:5%;">{{$tasklist->assigned_qty}}<input type="hidden" value="{{$tasklist->assigned_qty}}" id="assqty{{$tasklist->id}}"> </td>
+												<td>{{$tasklist->assigned_date}}</td>
+	<td style="width:2%;">
+
+   @if($hisrole !='admin') 
+		<input type="number" name="completedqtyarray[]" class="form-control" min="1" id="comp{{$tasklist->id}}" onchange="checkequal({{$tasklist->id}});" value='{{$tasklist->prepared_qty}}' >
+   @else
+   {{$tasklist->prepared_qty}}
+   @endif
+	</td> 
+		
+     @if($hisrole !='admin') 
+	<td class="reasontxtbox">
+			<input type="text" class="reasontxt" name="reasonarray[]"  id="reason{{$tasklist->id}}" value="{{$tasklist->reason }}"  >
+		</td>
+    @else
+    <td>
+    {{ $tasklist->reason }}
+    </td>
+    @endif
+		
+	
+												<td>
+    
+
+<!-- <a data-toggle="modal" data-target="#editassignedtask" data-id="{{$tasklist->id}}" id="editassignedtaskid" class="btn btn-sm btn-primary" href="javascript:;"> <i class="fa fa-edit"></i></a> -->
+												<!-- <label class="colorinput">
 													<input name="color" type="checkbox" id="{{$tasklist->id}}" value="azure" class="colorinput-input" onchange="deductthestock(this)"  />
 																<span class="colorinput-color bg-azure"></span>
-															</label>
-
-														</td>
+															</label> -->
+													</td>
 											  </tr>
                                       @endforeach
-
-											  
-											  
-											</tbody>
+                                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>
+                                	@if(count($assignedtask)!=0 && $hisrole !='admin')
+                                	<input class="btn btn-primary" type="submit" value="submit">
+                                	@else
+                                	@endif
+                                 </td></tr>      
+			  						</tbody>
 										  </table>
 									</div>
 								</div>
@@ -275,4 +314,32 @@
 
 <script>
 	
+</script>
+
+
+
+<!-- <div class="modal fade" id="editassignedtask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" 
+data-keyboard="true" >
+<div class="modal-dialog modal-lg">
+    <div class="text-center loading"> <img src="{{url('/')}}/assets/img/ajax-loader.gif"></div>
+    <div class="modal-content" id="edittaskinfo"></div>
+</div>
+</div> -->
+@section('extrajs')
+{!! Html::script('assets/plugins/peitychart/jquery.peity.min.js') !!}
+{!! Html::script('assets/plugins/peitychart/peitychart.init.js') !!}
+{!! Html::script('assets/plugins/flot/jquery.flot.js') !!}
+{!! Html::script('assets/plugins/flot/jquery.flot.fillbetween.js') !!}
+{!! Html::script('assets/plugins/flot/jquery.flot.pie.js') !!}
+{!! Html::script('assets/plugins/echarts/echarts.js') !!}
+{!! Html::script('assets/js/index1.js') !!}
+{!! Html::script('assets/plugins/flot/jquery.flot.pie.js') !!}
+{!! Html::script('assets/js/othercharts.js') !!}
+{!! Html::script('assets/plugins/chart/Chart.bundle.js') !!}
+{!! Html::script('assets/plugins/othercharts/jquery.knob.js') !!}
+
+@endsection
+
+<script type="text/javascript">
+
 </script>

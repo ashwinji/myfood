@@ -92,10 +92,12 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::post('admin/task_assign','TaskAssignController@getthebusycheflist')->name('getthebusycheflist');
         Route::get('admin/delete-chef-task/{id}','TaskAssignController@deleteallofthischef')->name('delete-chef-task');
         //////////////////////////////////////////Now assigned task accept and deduct the qty from the stock
-        
 
+        /*Route::post('editthetaskassigned','TaskAssignController@gettasksubmitmodal')->name('editthetaskassigned');
+*/
+        Route::post('submit-daily-chef-task','TaskAssignController@submitdailycheftask')->name('submitdailycheftask'); 
 
-          Route::post('deductthestockquantity','TaskAssignController@deductthestockquantity')->name('deductthestockquantity');
+         Route::post('deductthestockquantity','TaskAssignController@deductthestockquantity')->name('deductthestockquantity');
 
 
 

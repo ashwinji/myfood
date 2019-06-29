@@ -118,12 +118,12 @@ $(document).ready(function(){
                   // alert(info);
                   var response = $.parseJSON(info);
                   var trHTML = '';
-
+//onClick="changingvalue('+item.id+')"
                  $("#example").empty();
                  $(function() {
                   var jj=1;
                                 $.each(response, function(i, item) {
-                                      trHTML += '<tr><td>'+jj+'</td><td>' + item.chefname + '</td><td>' + item.recipename + '</td><td><input  class="targetedqtytxtbox" type="number"  min="1" max="2000" id="'+item.id+'" value="'+item.assigned_qty+'" onBlur="saveindbs(this.value,'+item.id+')" readonly /></td><td>' + item.assigned_date + '</td><td><a class="btn btn-sm btn-primary" href="javascript:;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" onClick="changingvalue('+item.id+')"><i class="fa fa-edit"></i></a><a class="btn btn-sm btn-danger" href="javascript:;" onClick="takeconfirm('+item.id+')" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></td></tr>';
+                                      trHTML += '<tr><td>'+jj+'</td><td>' + item.chefname + '</td><td>' + item.recipename + '</td><td><input  class="targetedqtytxtbox" type="number"  min="1" max="2000" id="'+item.id+'" value="'+item.assigned_qty+'" onBlur="saveindbs(this.value,'+item.id+')" readonly /></td><td>' + item.assigned_date + '</td><td><a class="btn btn-sm btn-primary" href="javascript:;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="fa fa-edit"></i></a><a class="btn btn-sm btn-danger" href="javascript:;" onClick="takeconfirm('+item.id+')" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></td></tr>';
                                       jj++;
                                 });
                                 $('#example').append(trHTML);

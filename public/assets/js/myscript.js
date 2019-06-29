@@ -130,4 +130,45 @@ function deductthestock(taskassignedcheckbox)
 
 ////////////////////taskassignview new change
 
+//////////this is for meal and recipe connection
 
+/*$(document).on("click", "#editassignedtaskid", function () {
+ // $('#fillDetailsaccess').hide();
+ // $('.loading').show();
+
+  var taskassignid = $(this).data('id');
+  $.ajax({
+    url: appurl+"editthetaskassigned",
+    type: 'POST',
+    data:"id="+taskassignid,
+    success:function(info){
+    
+      $('#edittaskinfo').html(info);
+      $('#edittaskinfo').show();
+
+    }
+  });
+});
+*/
+
+
+  function checkequal(id)
+{
+  //alert(id);
+   var completedqty = $('#comp'+id).val();
+  var assignedqty = $('#assqty'+id).val();
+ //alert("===="+assignedqty);
+  if(parseInt(completedqty)<parseInt(assignedqty))
+  {
+    $('.reasontxtbox').css('display','block');
+    $('#reason'+id).css('display','block');
+    // $('#reason'+id).prop('required','true');
+
+  }
+  else
+  {
+     $('#reason'+id).css('display','none');
+     // $('#reason'+id).prop('required','false');
+  }
+
+}

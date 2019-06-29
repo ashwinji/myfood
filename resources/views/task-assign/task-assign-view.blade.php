@@ -141,7 +141,7 @@ $unit                  = $ingredientlist->unit;*/
                         <?php $i=0; ?>
                         @foreach($tasklist as $tasks)
                         <tr>
-                            <td></td>
+                            <td>{{ ++$i }}</td>
                             <td>{{$assigningdt}}</td>
                             <td>{{ $tasks->getUser->name}}</td>   
                             <td>
@@ -194,9 +194,9 @@ $unit                  = $ingredientlist->unit;*/
 
                     <tbody>
                         <?php $i=0; ?>
-                        @foreach($tasklist as $tasks)
+                        @foreach($tasklist as $key=>$tasks)
                         <tr>
-                            <td></td>
+                            <td>{{ ($tasklist->currentpage()-1) * $tasklist->perpage() + $key + 1 }}</td>
                             <td>{{ $tasks->getUser->name }}</td>   
                             <td>{{ $tasks->getRecipeMaster->name }}</td>   
                             <td>{{ $tasks->assigned_qty }}</td>   
@@ -255,7 +255,7 @@ $unit                  = $ingredientlist->unit;*/
           <div class="pagination-nav text-left mt-60 mtb-xs-30 pull-right" >
                           <!--links here-->
                           @if(Request::segment(2)==='task-assign')
-                          <!-- {{ $tasklist->links() }}  -->
+                          {{ $tasklist->links() }} 
                           @else
                           @endif
              

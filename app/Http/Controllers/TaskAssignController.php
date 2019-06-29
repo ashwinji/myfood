@@ -9,6 +9,7 @@ use App\TaskAssign;
 use App\Ingredient;
 use App\RawMaterialStock;
 use Carbon\Carbon;
+use Auth;
 use DB;
 
 class TaskAssignController extends Controller
@@ -121,10 +122,12 @@ class TaskAssignController extends Controller
 
     /////////////////////////Now we are deducting the task
 
-    public function deductthestockquantity(Request $request)
+    // public function deductthestockquantity(Request $request)
+    public function deductthestockquantity($id)
     {
       
-       $taskassignmasterid = $request->id;
+       // $taskassignmasterid = $request->id;
+       $taskassignmasterid = $id;
        $datarow = TaskAssign::where('id',$taskassignmasterid)->first();
 
         $recipeid = $datarow['recipe_master_id'];
@@ -176,7 +179,13 @@ class TaskAssignController extends Controller
 
     public function getthebusycheflist(Request $request)
     {
+
       $assigningdt = $request->assigned_date;
+      /*if($assigningdt == '')
+      {
+        $this->tasks();
+      }*/
+      
       $tasklist  = TaskAssign::select('chef_id')
                            ->distinct()
                            ->where('assigned_date',$assigningdt)
@@ -201,5 +210,46 @@ class TaskAssignController extends Controller
           $assigningdt = '';
        return view('task-assign.task-assign-view',compact('tasklist','assigningdt'));
     }
+
+
+
+    ///////////////////Now here the chef will update the task given to him and he will submit his task
+     //////////at the end of the day
+      /* public function gettasksubmitmodal(Request $request)
+       {
+        
+        $taskassignmasterid = $request->id;
+        $taskrow = TaskAssign::where('id',$taskassignmasterid)->first();
+        return view('task-assign.task-submit-modal',compact('taskrow'));
+       }*/
+
+       public function submitdailycheftask(Request $request)
+       {
+        $totalrows = count($request->taskarray);
+        $tasks = $request->taskarray;
+        $reasonlist = $request->reasonarray;
+        $completedarray = $request->completedqtyarray;
+        $i =0;
+        $chef_id = Auth::id();
+        $currenttime = Carbon::now()->toDateTimeString();
+          
+        foreach($request->taskarray as $key=>$value)
+           {
+            // echo $key."===============".$value."<br>";
+              $data =[
+              'prepared_qty' => $completedarray[$i],
+              'reason' => $reasonlist[$i],
+              'prepared_date'=>$currenttime,
+                ];
+              TaskAssign::where('id',$value)
+                          ->update($data);
+
+    $deductingthestock = $this->deductthestockquantity($value); //we are passing the taskassign master id      
+          }
+
+          notify()->success('Success, Task successfully Submitted.');
+          return \Redirect()->back();
+
+       }
 
 }

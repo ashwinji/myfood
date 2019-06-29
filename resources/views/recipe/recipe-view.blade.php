@@ -80,7 +80,10 @@ $recipe_status          = $data->ingredient;
                         </div>
                      </div>
 
-                     <div class="col-md-6">
+
+                      
+
+                         <div class="col-md-6">
                         <div class="form-group">
                             <label for="recipe_info" class="form-label">Recipe Info</label>
                              {!! Form::textarea('recipe_info',$recipe_info,array('id'=>'recipe_info','class'=> $errors->has('recipe_info') ? 'form-control is-invalid state-invalid' : 'form-control', 'placeholder'=>'Recipe Information', 'autocomplete'=>'off','required'=>'required')) !!}
