@@ -92,17 +92,12 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::post('admin/task_assign','TaskAssignController@getthebusycheflist')->name('getthebusycheflist');
         Route::get('admin/delete-chef-task/{id}','TaskAssignController@deleteallofthischef')->name('delete-chef-task');
         //////////////////////////////////////////Now assigned task accept and deduct the qty from the stock
-        
-
-
-          Route::post('deductthestockquantity','TaskAssignController@deductthestockquantity')->name('deductthestockquantity');
-
-
-
-
-        Route::resource('admin-purchaseindent','PurchaseIndentController');
-        Route::resource('admin-purchaseindentitem','PurchaseIndentItemController');
-        Route::get('searchdata','PurchaseIndentItemController@getUnit')->name('data');
+     Route::post('deductthestockquantity','TaskAssignController@deductthestockquantity')->name('deductthestockquantity');
+      
+     ////////Purchase Indent////////// 
+     Route::resource('admin-purchaseindent','PurchaseIndentController');
+     Route::resource('admin-purchaseindentitem','PurchaseIndentItemController');
+     Route::get('searchdata','PurchaseIndentItemController@getUnit')->name('data');
     });
 
 

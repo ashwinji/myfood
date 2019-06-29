@@ -18,7 +18,7 @@ class PurchaseIndentItemController extends Controller
     }
 
         public function index(Request $request)
-    {
+      {
    
         if ($request->ajax()) {
             $data = PurchaseIndentItem::latest()->get();
@@ -102,11 +102,14 @@ class PurchaseIndentItemController extends Controller
         return response()->json(['success'=>'Purchase Indent deleted successfully.']);
     }
 
+    
     public function getUnit(Request $request)
     {
-     $getunit = RawMaterialMaster::where("unit",$request->raw_material)
-                ->pluck("item_name","id");
-        return response()->json($getunit);
+     $getunit   = RawMaterialMaster::where('item_name',$request->item_name)->first();
+        $returnData = array(
+              'unit'    => $getunit->unit,
+              'price'   => $getunit->expected_price
+        );
+        return response()->json($returnData, 200);
     }
-
 }

@@ -57,12 +57,12 @@
                          @endforeach
                          @endif
                         </select>
-                        </div>
                       </div>
+                    </div>
 
                     <table class="table" id="dynamic_field">  
                     <tr> 
-                       <td width="25%"><select name="raw_material" id="raw_material" class="form-control name_list"><option value="">--Select Item--</option>
+                       <td width="25%"><select name="item_name" id="item_name" class="form-control name_list"><option value="">--Select Item--</option>
                         @if($rawmaterialmaster->count()>0)
                          @foreach($rawmaterialmaster as $getrawmaterialmaster)
                         <option value="{{$getrawmaterialmaster->id}}">{{$getrawmaterialmaster->item_name}}
@@ -70,13 +70,13 @@
                         @endif
                         </option>           
                         </select></td>
-                        <td width="25%"> <select name="unit" id ="unit" class="form-control" required><option value="">--Select Child--</option></td> 
-                         <td><input type="number" name="price" id="price" placeholder="Item Price" min="1" class="form-control name_list" step="any"/></td>
+                        <td><input type="text" name="unit" id="unit" placeholder="Unit" class="form-control name_list"/></td> 
+                         <td><input type="number" name="expected_price" id="expected_price" placeholder="Item Price" min="1" class="form-control name_list" step="any"/></td>
                          <td><input type="number" name="required_qty" id="required_qty" placeholder="Required Qty" min="1" class="form-control name_list" step="any"/></td>
                          <td><input type="number" name="accept_qty" id="accept_qty" placeholder="Accept qty" min="1" class="form-control name_list" step="any"/></td>
                         <td><button type="button" name="add" id="add" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></button></td>  
                     </tr>  
-                 </table>
+                   </table>
 
                     <div class="col-sm-offset-2 col-sm-10">
                      <button type="Submit" class="btn btn-primary" id="saveBtn" value="create">Save
@@ -250,30 +250,28 @@
        $('#row'+button_id+'').remove();
       });
       });
-   </script>
-  <script>
-   $(document).ready(function(){
-   $('#raw_material').change(function(){
-    var menu = $(this).val();    
-    if(menu){
-        $.ajax({
-           type:"GET",
-           url:"{{ route('data')}}?raw_material="+menu,
-           success:function(res){               
-            if(res){
-                $("#unit").empty();
-                $("#unit").append('<option>--Select Unit--</option>');
-                $.each(res,function(key,value){
-                    $("#unit").append('<option value="'+key+'">'+value+'</option>');
-                });
-           
-            }else{
-               $("#unit").empty();
-            }
-           }
-        });
-    }      
+</script>
+<script>
+$(document).ready(function(){
+   $('#item_name').change(function(){
+    $('#item_name').val($(this).text());
+    getOtherDetails($(this).text());      
    });
-});
- </script>
+ });
+function getOtherDetails(item_name)
+{
+  $.ajax({
+       method:"GET",
+       url:"{{route('data')}}",
+       data:{'item_name':item_name},
+       dataType:'text',
+       success:function(data)
+       {
+        var obj = JSON.parse(data);
+        document.getElementById("unit").value = obj.unit;
+        document.getElementById("expected_price").value = obj.price;
+      }      
+   });
+}
+</script>
 

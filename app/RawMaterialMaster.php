@@ -10,28 +10,22 @@ use App\PurchaseIndentItem;
 use App\Ingredient;
 use App\RawMaterialRecTransLog;
 use App\SupplierItem;
+use App\Unitmaster;
 
 class RawMaterialMaster extends Model
 {
 
+  use SoftDeletes;
 
-    
+  protected $fillable = ['item_name','unit','expected_price'];
 
-    use SoftDeletes;
-
-    protected $fillable = ['item_name','unit','expected_price'];
-
-   public function unitname()
+   
+   public function getUnitmaster()
    {
-       return $this->belongsTo('App\UnitMaster', 'unit', 'id');
-
-
-  }
+      return $this->belongsTo(Unitmaster::class, 'unit', 'id');
+   }
 
     
-    
-
-
     public function getRawMaterialStocks()
    {
        return $this->hasMany(RawMaterialStock::class, 'item_id','id');

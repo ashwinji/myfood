@@ -22,12 +22,9 @@
 
 {!! Html::style('assets/css/custom.css') !!}
 
-
-
 <!--for task assign -->
 {!! Html::style('assets/css/mycss.css') !!}
 
-
 <!-- Date Picker Plugin -->
-		<link href="assets/plugins/date-picker/spectrum.css" rel="stylesheet" />
+<link href="assets/plugins/date-picker/spectrum.css" rel="stylesheet" />
 
