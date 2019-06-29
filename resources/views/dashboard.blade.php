@@ -183,14 +183,8 @@
     {{ $tasklist->reason }}
     </td>
     @endif
-		
-	
-												<td>
-    
-
-
-													</td>
-											  </tr>
+								<td>	</td>
+									  </tr>
                                       @endforeach
                                 <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>
                                 	@if(count($assignedtask)!=0 && $hisrole !='admin')

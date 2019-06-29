@@ -49,8 +49,6 @@ class HomeController extends Controller
                                     ->get();
          }
          
-
-         
         return view('dashboard',compact('assignedtask','hisrole'));
     }
 }

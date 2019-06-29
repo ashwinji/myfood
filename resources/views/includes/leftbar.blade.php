@@ -82,10 +82,10 @@
 				<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-table"></i><span class="side-menu__label">Purchase Indent</span><i class="angle fa fa-angle-right"></i></a>
 				<ul class="slide-menu">
 					<li>
-						<a href="{{route('admin-purchaseindent.index')}}" class="slide-item">Purchase Indent</a>
+						<a href="#" class="slide-item">Purchase Indent</a>
 					</li>
 					<li>
-						<a href="{{route('admin-purchaseindentitem.index')}}" class="slide-item">Purchase Indent Item</a>
+						<a href="#" class="slide-item">Purchase Indent Item</a>
 					</li>
 
 				</ul>
