@@ -1,12 +1,7 @@
 @extends('layouts.master')
 @section('content')
 
-<!-- <div class="page-header">
-    <ol class="breadcrumb breadcrumb-arrow mt-3">
-        <li><a href="{{route('dashboard') }}">Dashboard</a></li>
-        <li class="active"><span>User Management</span></li>
-    </ol>
-</div> -->
+
 @if(Request::segment(2)==='recipe-edit' || Request::segment(2)==='recipe-add')
 @if(Request::segment(2)==='recipe-add')
 <?php
@@ -80,7 +75,10 @@ $recipe_status          = $data->ingredient;
                         </div>
                      </div>
 
-                     <div class="col-md-6">
+
+                      
+
+                         <div class="col-md-6">
                         <div class="form-group">
                             <label for="recipe_info" class="form-label">Recipe Info</label>
                              {!! Form::textarea('recipe_info',$recipe_info,array('id'=>'recipe_info','class'=> $errors->has('recipe_info') ? 'form-control is-invalid state-invalid' : 'form-control', 'placeholder'=>'Recipe Information', 'autocomplete'=>'off','required'=>'required')) !!}

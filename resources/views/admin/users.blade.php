@@ -176,13 +176,18 @@ $city           = $user->city;
                             @endif
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-footer">
+                            {!! Form::submit('Save', array('class'=>'btn btn-primary btn-block')) !!}
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-lg-4">
+    <!-- <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">
@@ -201,13 +206,13 @@ $city           = $user->city;
                 
                 
                 
-
+    
                 <div class="form-footer">
                     {!! Form::submit('Save', array('class'=>'btn btn-primary btn-block')) !!}
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 {{ Form::close() }}
 

@@ -15,11 +15,9 @@ function gettheunit(ingredientid,incrementnumber)
         url: appurl+'gettheunit',  
         data:'itemid='+ingredientid,
         success: function(data){
-        	 //alert(data);
-            //$splt = data.split('_');
+        	 
              $("#unitname"+incrementnumber).html(data);
-             // $("#unitname"+incrementnumber).html($splt[0]);
-            //$("#price"+incrementnumber).val($splt[1]);
+       
 
         }
         });
@@ -32,8 +30,7 @@ function gettheunit(ingredientid,incrementnumber)
 //////////this is for meal and recipe connection
 
 $(document).on("click", "#takemealinfoid", function () {
- // $('#fillDetailsaccess').hide();
- // $('.loading').show();
+
 
   var id = $(this).data('id');
   // alert(id);
@@ -128,6 +125,25 @@ function deductthestock(taskassignedcheckbox)
 }
 
 
-////////////////////taskassignview new change
 
 
+  function checkequal(id)
+{
+  //alert(id);
+   var completedqty = $('#comp'+id).val();
+  var assignedqty = $('#assqty'+id).val();
+ //alert("===="+assignedqty);
+  if(parseInt(completedqty)<parseInt(assignedqty))
+  {
+    $('.reasontxtbox').css('display','block');
+    $('#reason'+id).css('display','block');
+    // $('#reason'+id).prop('required','true');
+
+  }
+  else
+  {
+     $('#reason'+id).css('display','none');
+     // $('#reason'+id).prop('required','false');
+  }
+
+}

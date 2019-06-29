@@ -9,6 +9,7 @@ use App\TaskAssign;
 use App\Ingredient;
 use App\RawMaterialStock;
 use Carbon\Carbon;
+use Auth;
 use DB;
 
 class TaskAssignController extends Controller
@@ -20,14 +21,14 @@ class TaskAssignController extends Controller
     }
 
 
-    public function tasks()
+    public function Tasks()
     {
           $tasklist = TaskAssign::paginate(10);
           $assigningdt = '';
     	 return view('task-assign.task-assign-view',compact('tasklist','assigningdt'));
     }
 
-    public function showtaskassigningpage(Request $request)
+    public function ShowTaskAssigningPage(Request $request)
     {
         $id = $request->id;
         $recipelist = RecipeMaster::get();
@@ -39,7 +40,7 @@ class TaskAssignController extends Controller
 
     }
 
-    public function fillthetask(Request $request)
+    public function FillTheTask(Request $request)
     {
         
         //return count($request->recipe_name);
@@ -77,7 +78,7 @@ class TaskAssignController extends Controller
          return $lst;
     }
 
-    public function deleteassignedtask($id)
+    public function DeleteAssignedTask($id)
     {
         //dd($id);
         if(TaskAssign::where('id', $id)->count()<1)
@@ -94,7 +95,7 @@ class TaskAssignController extends Controller
        return view('task-assign.task-assign-view',compact('tasklist','assigningdt'));
     }
 
-    public function savethetargetupdated(Request $request)
+    public function SavetheTargetUpdated(Request $request)
     {
 
        $newvalue =  $request->newvalue;
@@ -121,10 +122,11 @@ class TaskAssignController extends Controller
 
     /////////////////////////Now we are deducting the task
 
-    public function deductthestockquantity(Request $request)
+    public function DeducttheStockQuantity($id)
     {
       
-       $taskassignmasterid = $request->id;
+       // $taskassignmasterid = $request->id;
+       $taskassignmasterid = $id;
        $datarow = TaskAssign::where('id',$taskassignmasterid)->first();
 
         $recipeid = $datarow['recipe_master_id'];
@@ -174,9 +176,12 @@ class TaskAssignController extends Controller
       ///  return 'true';
     }
 
-    public function getthebusycheflist(Request $request)
+    public function GetTheBusyChefList(Request $request)
     {
+
       $assigningdt = $request->assigned_date;
+    
+      
       $tasklist  = TaskAssign::select('chef_id')
                            ->distinct()
                            ->where('assigned_date',$assigningdt)
@@ -185,7 +190,7 @@ class TaskAssignController extends Controller
 
     }
 
-    public function deleteallofthischef($chefid)
+    public function DeleteAllofThisChef($chefid)
     {
         //dd($id);
         if(TaskAssign::where('chef_id', $chefid)->count()<1)
@@ -201,5 +206,37 @@ class TaskAssignController extends Controller
           $assigningdt = '';
        return view('task-assign.task-assign-view',compact('tasklist','assigningdt'));
     }
+
+
+
+
+       public function SubmitDailyChefTask(Request $request)
+       {
+        $totalrows = count($request->taskarray);
+        $tasks = $request->taskarray;
+        $reasonlist = $request->reasonarray;
+        $completedarray = $request->completedqtyarray;
+        $i =0;
+        $chef_id = Auth::id();
+        $currenttime = Carbon::now()->toDateTimeString();
+          
+        foreach($request->taskarray as $key=>$value)
+           {
+           
+              $data =[
+              'prepared_qty' => $completedarray[$i],
+              'reason' => $reasonlist[$i],
+              'prepared_date'=>$currenttime,
+                ];
+              TaskAssign::where('id',$value)
+                          ->update($data);
+
+    $deductingthestock = $this->deductthestockquantity($value); //we are passing the taskassign master id      
+          }
+
+          notify()->success('Success, Task successfully Submitted.');
+          return \Redirect()->back();
+
+       }
 
 }

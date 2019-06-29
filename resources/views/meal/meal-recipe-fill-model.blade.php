@@ -1,7 +1,6 @@
 @inject('service', 'App\library\InjectService')
 <div class="modal-header" id="getitemtotenderdetailsss">
-    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="ti-close"></span></button>
-    -->
+    
     <h4 class="modal-title" id="myModalLabel">Enter Meal and its recipe
        
     </h4>

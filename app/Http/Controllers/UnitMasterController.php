@@ -14,18 +14,18 @@ class UnitMasterController extends Controller
     }
 
 
-    public function unitList(){
+    public function UnitList(){
 
   		$data = UnitMaster::paginate(10);
         //$unitlist = WeightUnit::get();
         return View('units.unit-view',compact('data'));
   	}
 
-  	public function unitadd()
+  	public function UnitAdd()
   	{
  		return View('units.unit-view');//,compact('data'));
   	}
-    public function unitedit($id)
+    public function UnitEdit($id)
   	{
   		 if(UnitMaster::where('id', $id)->count()<1)
         {
@@ -40,7 +40,7 @@ class UnitMasterController extends Controller
 
 
       
-     public function unitsave(Request $request)
+     public function UnitSave(Request $request)
      {
      	$this->validate($request, [    			  
             'weight_unit'     		 => 'required',                        
@@ -65,7 +65,7 @@ class UnitMasterController extends Controller
 
      }
 
-     public function unitdelete($id) {
+     public function UnitDelete($id) {
      if(UnitMaster::where('id', $id)->count()<1)
         {
             notify()->error('Oops!!!, something went wrong, please try again.');

@@ -15,19 +15,19 @@ class MealMasterController extends Controller
         $this->middleware('permission:mealType', ['only' => ['mealTypeAdd','mealTypeEdit','mealTypeSave','mealTypeDelete','mealTypeAction']]);  */
     }
 
-    public function mealslist()
+    public function MealsList()
     {
 
     	$mealslist = MealMaster::get();
     	return view('meal.meal-view',compact('mealslist'));
     }
 
-    public function mealsadd()
+    public function MealsAdd()
     {
     	return view('meal.meal-view');
     }
 
-    public function mealsedit($id)
+    public function MealsEdit($id)
     {
 
     	if(MealMaster::where('id', $id)->count()<1)
@@ -40,7 +40,7 @@ class MealMasterController extends Controller
         return View('meal.meal-view',compact('data'));
     }
 
-    public function mealssave(Request $request)
+    public function MealsSave(Request $request)
     {
     	if(empty($request->id))
     	{
@@ -78,7 +78,7 @@ class MealMasterController extends Controller
     }
 
 
-    public function mealsdelete($id)
+    public function MealsDelete($id)
     {
     	if(MealMaster::where('id', $id)->count()<1)
         {
@@ -91,7 +91,7 @@ class MealMasterController extends Controller
     }
 
           //////////////meal and recipe connection ///////////////
-     public function mealrecipe()
+     public function MealRecipe()
      {
 
        $mealrecipelist = MealMaster::paginate(10);
@@ -101,7 +101,7 @@ class MealMasterController extends Controller
 
      }
 
-     public function showmealandrecipepage(Request $request)
+     public function ShowMealandRecipePage(Request $request)
      {
         
         $id = $request->id;
@@ -114,7 +114,7 @@ class MealMasterController extends Controller
         return view('meal.meal-recipe-fill-model',compact('recipelist','datarows','id'));
      }
      
-      public function meal_recipe_save(Request $request)
+      public function MealRecipeSave(Request $request)
       {
              
         $request_id = $request->id;
@@ -180,7 +180,7 @@ class MealMasterController extends Controller
                return redirect()->route('meal-recipe');
       }
 
-    public function mealrecipedelete($id)
+    public function MealRecipeDelete($id)
     {
         if(MealMaster::where('id', $id)->count()<1)
         {

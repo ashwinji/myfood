@@ -16,20 +16,20 @@ class RecipeMasterController extends Controller
         $this->middleware('permission:foodProduct', ['only' => ['recipeadd','recipesave','recipeedit']]);     */          
     }
 
-    public function recipelist()
+    public function RecipeList()
     {
     	$data = RecipeMaster::paginate(10); 
       $itemlist = RawMaterialMaster::get();
     	return view ('recipe.recipe-view',compact('data','itemlist'));
     }
 
-    public function recipeadd()
+    public function RecipeAdd()
     {
       $itemlist = RawMaterialMaster::get();
     	return view('recipe.recipe-view',compact('itemlist'));	
     }
 
-    public function recipesave(Request $request)
+    public function RecipeSave(Request $request)
     {
 
     	 if(empty($request->id))
@@ -135,7 +135,7 @@ class RecipeMasterController extends Controller
     }
 
 
-    public function recipeedit($id)
+    public function RecipeEdit($id)
     {
     	 if(RecipeMaster::where('id', $id)->count()<1)
         {
@@ -150,7 +150,7 @@ class RecipeMasterController extends Controller
     }
 
 
-    public function recipedelete($id)
+    public function RecipeDelete($id)
     {
       if(RecipeMaster::where('id', $id)->count()<1)
         {
@@ -162,7 +162,7 @@ class RecipeMasterController extends Controller
         return \Redirect()->back();
     }
 
-    public function gettheunit(Request $request)
+    public function GetTheUnit(Request $request)
    {    
      $ingredientid = $request->itemid;
      $ingredient_unit = RawMaterialMaster::where('id',$ingredientid)->first()->unit;
