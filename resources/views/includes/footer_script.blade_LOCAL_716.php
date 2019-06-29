@@ -17,13 +17,3 @@
 
 
 
-
-
-
-<!-- its my script js -->
-{!! Html::script('assets/js/myscript.js') !!}
-
-
-
-
-

@@ -73,7 +73,7 @@
 					<li>
 				<a href="{{ route('task-assign') }}" class="slide-item">Task Assign </a>
 					</li>
-
+<<<<<<< HEAD
 				</ul>
 			</li>
 
@@ -87,7 +87,8 @@
 					<li>
 						<a href="{{route('admin-purchaseindentitem.index')}}" class="slide-item">Purchase Indent Item</a>
 					</li>
-
+=======
+>>>>>>> e46eddeed485d2bbcc91cf68a93734e58b5b8264
 				</ul>
 			</li>
          
