@@ -21,14 +21,14 @@ class TaskAssignController extends Controller
     }
 
 
-    public function tasks()
+    public function Tasks()
     {
           $tasklist = TaskAssign::paginate(10);
           $assigningdt = '';
     	 return view('task-assign.task-assign-view',compact('tasklist','assigningdt'));
     }
 
-    public function showtaskassigningpage(Request $request)
+    public function ShowTaskAssigningPage(Request $request)
     {
         $id = $request->id;
         $recipelist = RecipeMaster::get();
@@ -40,7 +40,7 @@ class TaskAssignController extends Controller
 
     }
 
-    public function fillthetask(Request $request)
+    public function FillTheTask(Request $request)
     {
         
         //return count($request->recipe_name);
@@ -78,7 +78,7 @@ class TaskAssignController extends Controller
          return $lst;
     }
 
-    public function deleteassignedtask($id)
+    public function DeleteAssignedTask($id)
     {
         //dd($id);
         if(TaskAssign::where('id', $id)->count()<1)
@@ -95,7 +95,7 @@ class TaskAssignController extends Controller
        return view('task-assign.task-assign-view',compact('tasklist','assigningdt'));
     }
 
-    public function savethetargetupdated(Request $request)
+    public function SavetheTargetUpdated(Request $request)
     {
 
        $newvalue =  $request->newvalue;
@@ -122,8 +122,7 @@ class TaskAssignController extends Controller
 
     /////////////////////////Now we are deducting the task
 
-    // public function deductthestockquantity(Request $request)
-    public function deductthestockquantity($id)
+    public function DeducttheStockQuantity($id)
     {
       
        // $taskassignmasterid = $request->id;
@@ -177,14 +176,11 @@ class TaskAssignController extends Controller
       ///  return 'true';
     }
 
-    public function getthebusycheflist(Request $request)
+    public function GetTheBusyChefList(Request $request)
     {
 
       $assigningdt = $request->assigned_date;
-      /*if($assigningdt == '')
-      {
-        $this->tasks();
-      }*/
+    
       
       $tasklist  = TaskAssign::select('chef_id')
                            ->distinct()
@@ -194,7 +190,7 @@ class TaskAssignController extends Controller
 
     }
 
-    public function deleteallofthischef($chefid)
+    public function DeleteAllofThisChef($chefid)
     {
         //dd($id);
         if(TaskAssign::where('chef_id', $chefid)->count()<1)
@@ -213,17 +209,8 @@ class TaskAssignController extends Controller
 
 
 
-    ///////////////////Now here the chef will update the task given to him and he will submit his task
-     //////////at the end of the day
-      /* public function gettasksubmitmodal(Request $request)
-       {
-        
-        $taskassignmasterid = $request->id;
-        $taskrow = TaskAssign::where('id',$taskassignmasterid)->first();
-        return view('task-assign.task-submit-modal',compact('taskrow'));
-       }*/
 
-       public function submitdailycheftask(Request $request)
+       public function SubmitDailyChefTask(Request $request)
        {
         $totalrows = count($request->taskarray);
         $tasks = $request->taskarray;
@@ -235,7 +222,7 @@ class TaskAssignController extends Controller
           
         foreach($request->taskarray as $key=>$value)
            {
-            // echo $key."===============".$value."<br>";
+           
               $data =[
               'prepared_qty' => $completedarray[$i],
               'reason' => $reasonlist[$i],

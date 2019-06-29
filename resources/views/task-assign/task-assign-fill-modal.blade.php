@@ -1,12 +1,8 @@
 @inject('service', 'App\library\InjectService')
 <div class="modal-header" id="getitemtotenderdetailsss">
-    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="ti-close"></span></button>
-    -->
+    
     <h4 class="modal-title" id="myModalLabel">Enter Meal and its recipe
-       
     </h4>
-     
-
 </div>
 @if ($errors->any())
 <div class="alert alert-danger login-danger"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
@@ -20,9 +16,7 @@
 <div class="modal-body" id="print_data">      
                       <div class="row">
                        <div class="col-md-12">      
-  <?php
-   //$mealname = $service->getmealname($id);
-  ?>                                  
+                                  
  {{ Form::open(array('route' => 'meal_recipe_save', 'class'=> 'form-horizontal', 'autocomplete'=>'off')) }}
  {!! Form::hidden('id',$id,array('class'=>'form-control')) !!}
         @csrf
@@ -45,7 +39,7 @@
  
                         
                     </div>
-                   <!--I have done this-->
+                  
                    <div class="col-md-12">
                    <div class="row">
 
@@ -78,7 +72,7 @@
                     </div>
                 </div>
              
-                   <!--I have done this-->
+                 
 
                  
                     <div class="form-footer modal-footer">
@@ -106,8 +100,7 @@
 
 $(document).ready(function(){
   $("#savebutton").click(function(){
-    // var a = $("div").text($("form").serialize());
-             // var id = $(this).data('id');
+    
                var formdata = $("form").serialize();
                 //alert(formdata);
               $.ajax({
@@ -118,7 +111,6 @@ $(document).ready(function(){
                   // alert(info);
                   var response = $.parseJSON(info);
                   var trHTML = '';
-//onClick="changingvalue('+item.id+')"
                  $("#example").empty();
                  $(function() {
                   var jj=1;

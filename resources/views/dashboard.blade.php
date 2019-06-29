@@ -290,11 +290,7 @@
 												<td>
     
 
-<!-- <a data-toggle="modal" data-target="#editassignedtask" data-id="{{$tasklist->id}}" id="editassignedtaskid" class="btn btn-sm btn-primary" href="javascript:;"> <i class="fa fa-edit"></i></a> -->
-												<!-- <label class="colorinput">
-													<input name="color" type="checkbox" id="{{$tasklist->id}}" value="azure" class="colorinput-input" onchange="deductthestock(this)"  />
-																<span class="colorinput-color bg-azure"></span>
-															</label> -->
+
 													</td>
 											  </tr>
                                       @endforeach
@@ -318,13 +314,7 @@
 
 
 
-<!-- <div class="modal fade" id="editassignedtask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" 
-data-keyboard="true" >
-<div class="modal-dialog modal-lg">
-    <div class="text-center loading"> <img src="{{url('/')}}/assets/img/ajax-loader.gif"></div>
-    <div class="modal-content" id="edittaskinfo"></div>
-</div>
-</div> -->
+
 @section('extrajs')
 {!! Html::script('assets/plugins/peitychart/jquery.peity.min.js') !!}
 {!! Html::script('assets/plugins/peitychart/peitychart.init.js') !!}
@@ -337,7 +327,6 @@ data-keyboard="true" >
 {!! Html::script('assets/js/othercharts.js') !!}
 {!! Html::script('assets/plugins/chart/Chart.bundle.js') !!}
 {!! Html::script('assets/plugins/othercharts/jquery.knob.js') !!}
-
 @endsection
 
 <script type="text/javascript">

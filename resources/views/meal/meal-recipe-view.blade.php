@@ -127,7 +127,7 @@ $recipe_master_id      = $ingredientlist->unit;
                                    
 <a data-toggle="modal" data-target="#takemealinfo" data-id="{{ $rows->id }}" id="takemealinfoid2" class="btn btn-sm btn-primary" href="javascript:;" data-original-title="{{ $rows->meal_master_id }}"><i class="fa fa-edit"></i></a>
 
-                                    <!-- <a class="btn btn-sm btn-primary" href="#" onClick="return confirm('Are you sure you want to delete this?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a> -->
+                                    
                                    <a class="btn btn-sm btn-danger" href="{{route('mealrecipedelete',array('id'=>$rows->id))}}" onClick="return confirm('Are you sure you want to delete this?');" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a> 
                                    
                                 </div>

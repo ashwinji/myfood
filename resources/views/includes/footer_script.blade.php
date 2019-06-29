@@ -19,5 +19,7 @@
 
 
 
-<!-- its my Ashwin script js -->
+<!-- its my script js -->
 {!! Html::script('assets/js/myscript.js') !!}
+
+

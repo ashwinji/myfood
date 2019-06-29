@@ -19,20 +19,20 @@ class RawMaterialMasterController extends Controller
 
     }
 
-    public function rawmaterialList(){
+    public function RawMaterialList(){
 
   		$rawmateriallist = RawMaterialMaster::paginate(10);
         //$unitlist = WeightUnit::get();
         return View('raw-material.raw-material-view',compact('rawmateriallist'));
   	}
 
-  	public function rawmaterialadd()
+  	public function RawMaterialAdd()
   	{
   		$unitlist = UnitMaster::get();
         return View('raw-material.raw-material-view',compact('unitlist'));	
   	}
 
-  	public function rawmaterialedit($id)
+  	public function RawMaterialEdit($id)
   	{
   		 if(RawMaterialMaster::where('id', $id)->count()<1)
         {
@@ -45,7 +45,7 @@ class RawMaterialMasterController extends Controller
         return View('raw-material.raw-material-view',compact('rawmateriallist','unitlist'));
   	}
 
-  	public function rawmaterialsave(Request $request)
+  	public function RawMaterialSave(Request $request)
   	{
   	   if(empty($request->id))
       {
@@ -85,7 +85,7 @@ class RawMaterialMasterController extends Controller
             return redirect()->route('raw-material');
   	}
 
-  	public function rawmaterialdelete($id)
+  	public function RawMaterialDelete($id)
   	{
   		if(RawMaterialMaster::where('id', $id)->count()<1)
 

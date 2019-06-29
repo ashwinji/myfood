@@ -1,12 +1,7 @@
 @extends('layouts.master')
 @section('content')
 
-<!-- <div class="page-header">
-    <ol class="breadcrumb breadcrumb-arrow mt-3">
-        <li><a href="{{route('dashboard') }}">Dashboard</a></li>
-        <li class="active"><span>User Management</span></li>
-    </ol>
-</div> -->
+
 @if(Request::segment(2)==='recipe-edit' || Request::segment(2)==='recipe-add')
 @if(Request::segment(2)==='recipe-add')
 <?php

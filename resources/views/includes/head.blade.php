@@ -11,15 +11,15 @@
 <meta name="MobileOptimized" content="320">
 <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-
 <title>{{$appSetting->app_name}}</title>
 <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
 {!! Html::style('assets/fonts/fonts/font-awesome.min.css') !!}
 {!! Html::style('assets/css/dashboard.css') !!}
-
-
-
-
+{!! Html::style('assets/plugins/scroll-bar/jquery.mCustomScrollbar.css') !!}
+{!! Html::style('assets/plugins/toggle-sidebar/sidemenu.css') !!}
+{!! Html::style('assets/plugins/iconfonts/plugin.css') !!}
+{!! Html::style('assets/plugins/datatable/dataTables.bootstrap4.min.css') !!}
+{!! Html::style('assets/css/custom.css') !!}
 
 <!--for task assign -->
 {!! Html::style('assets/css/mycss.css') !!}
